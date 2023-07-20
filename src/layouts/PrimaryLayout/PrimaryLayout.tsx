@@ -1,0 +1,1 @@
+import React from "react";import { View } from "react-native";import { Outlet } from "react-router-native";import Header from "src/components/header/Header";type TPrimaryLayoutProps = {};const PrimaryLayout: React.FC<TPrimaryLayoutProps> = ({}) => {  return (    <View>      <Header />      <Outlet />    </View>  );};export default PrimaryLayout;
