@@ -1,0 +1,1 @@
+export const currencies = [	{ value: "RUB", label: "₽" },	{ value: "USD", label: "$" },]

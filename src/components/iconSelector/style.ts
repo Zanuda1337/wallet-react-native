@@ -1,0 +1,1 @@
+import {StyleSheet} from "react-native";import {theme} from "src/assets/styles/theme";export const style = StyleSheet.create({	content: {		display: "flex",		justifyContent: "flex-end",		width: "100%",		backgroundColor: theme.colors.lightgray,	},	list: {		paddingVertical: 20,		display: "flex",		flexDirection: "row",		flexWrap: "wrap",		gap: 10	}})

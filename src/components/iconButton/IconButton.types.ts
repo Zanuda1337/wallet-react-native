@@ -1,0 +1,1 @@
+import {	StyleProp,	TextStyle,} from "react-native";import {AnimatedStyle} from "src/types";export type TIconButtonStyles = {	root?:  AnimatedStyle | AnimatedStyle[]	text?:  StyleProp<TextStyle>}

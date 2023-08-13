@@ -1,0 +1,1 @@
+import {RegisterOptions} from "react-hook-form";import React from "react";export type TField = {	label?: string	name: string,	component?: React.FC	rules?: RegisterOptions	initialValue?: any	props?: Record<string, any>}

@@ -7,41 +7,94 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50815815-f34a-414e-9e6a-6e210825bfe8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/eslint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Inter-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/fonts/Ubuntu-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/styles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/header/style.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/feed/Feed.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/router/Router.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layouts/PrimaryLayout/PrimaryLayout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Zanuda.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/theme.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/button/Button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/button/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/calculator/Calculator.consts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/calculator/Calculator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/calculator/Calculator.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/calculator/stytle.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/checkbox/Checkbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/checkbox/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/datePicker/DatePicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/datePicker/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/dialogue/Dialogue.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/dialogue/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/Form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/Form.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/renderCalculator/RenderCalculator.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/renderCheckbox/RenderCheckbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/renderDatePicker/RenderDatePicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/renderIconSelector/RenderIconSelector.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/renderSelect/RenderSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/form/renderTextField/RenderTextField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/iconButton/IconButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/iconButton/IconButton.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/iconButton/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/iconSelector/IconSelector.consts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/iconSelector/IconSelector.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/iconSelector/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/itemModal/ItemModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/itemModal/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modalHeader/ModalHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/modalHeader/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/navigation/Navigation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/navigation/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/select/Select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/select/Select.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/select/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/textField/TextField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/textField/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/transactionModal/TransactionModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/transactionModal/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/consts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/router/Router.consts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/settings/Settings.slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/settings/Settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/transactions/Tansactions.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.consts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.slice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/transactions/item/Item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/transactions/style.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/providers/connectedIntlProvider/ConnectedIntlProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/providers/momentProvider/MomentProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/hooks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/languages/en.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/languages/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/languages/ru.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/validation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/adaptive-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/adaptive-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/favicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/splash.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/styles.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/style.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/router/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/router/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/PrimaryLayout/PrimaryLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PrimaryLayout/PrimaryLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +104,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="2Shc3K1DeCT4lnk6j8TvqhKQuT2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -59,23 +118,36 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/eslint.json" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.jscs" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.jscs" value="" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Zanuda\AppData\Roaming\npm\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="ts.external.directory.path" value="C:\Users\Zanuda\Documents\Projects\wallet-react-native\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src\providers" />
       <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src\components\header" />
       <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src\assets" />
       <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src" />
       <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src\features" />
-      <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src\utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -112,8 +184,36 @@
       <workItem from="1689668566133" duration="19457000" />
       <workItem from="1689704310427" duration="1984000" />
       <workItem from="1689775493909" duration="614000" />
-      <workItem from="1689803579252" duration="600000" />
+      <workItem from="1689803579252" duration="699000" />
+      <workItem from="1690795665773" duration="1191000" />
+      <workItem from="1690998923872" duration="6220000" />
+      <workItem from="1691060147608" duration="26764000" />
+      <workItem from="1691097405882" duration="8013000" />
+      <workItem from="1691145391108" duration="203000" />
+      <workItem from="1691149563759" duration="37573000" />
+      <workItem from="1691223608660" duration="1894000" />
+      <workItem from="1691338759144" duration="12050000" />
+      <workItem from="1691442578390" duration="44540000" />
+      <workItem from="1691664101611" duration="14000" />
+      <workItem from="1691666712402" duration="2292000" />
+      <workItem from="1691685006423" duration="13578000" />
+      <workItem from="1691703892953" duration="24952000" />
+      <workItem from="1691743418540" duration="3613000" />
+      <workItem from="1691800801024" duration="1232000" />
+      <workItem from="1691802064933" duration="274000" />
+      <workItem from="1691802349992" duration="265000" />
+      <workItem from="1691804476380" duration="13000" />
+      <workItem from="1691804525976" duration="9589000" />
+      <workItem from="1691814275836" duration="26882000" />
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <created>1689817626283</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689817626283</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,45 +224,85 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="586" y="238" key="#Inspections" timestamp="1689620287909">
+    <state x="681" y="325" key="#ESLint" timestamp="1691814161995">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="586" y="238" key="#Inspections/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689620287909" />
-    <state x="514" y="258" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1689608213614">
+    <state x="681" y="325" key="#ESLint/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691814161995" />
+    <state x="586" y="238" key="#Inspections" timestamp="1691165016886">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="514" y="258" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689608213614" />
-    <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1689675785522">
+    <state x="586" y="238" key="#Inspections/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691165016886" />
+    <state x="552" y="201" key="#Plugins" timestamp="1691801838621">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689675785522" />
-    <state width="1899" height="355" key="GridCell.Tab.0.bottom" timestamp="1689706793885">
+    <state x="552" y="201" key="#Plugins/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691801838621" />
+    <state x="385" y="137" width="1239" height="429" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1691805803697">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="355" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689706793885" />
-    <state width="1899" height="355" key="GridCell.Tab.0.center" timestamp="1689706793884">
+    <state x="385" y="137" width="1239" height="429" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691805803697" />
+    <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1691845542848">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="355" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689706793884" />
-    <state width="1899" height="355" key="GridCell.Tab.0.left" timestamp="1689706793884">
+    <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691845542848" />
+    <state x="959" y="365" key="FileChooserDialogImpl" timestamp="1691801480776">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="355" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689706793884" />
-    <state width="1899" height="355" key="GridCell.Tab.0.right" timestamp="1689706793885">
+    <state x="959" y="365" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691801480776" />
+    <state width="1899" height="189" key="GridCell.Tab.0.bottom" timestamp="1691849703215">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="355" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689706793885" />
-    <state x="534" y="339" key="SettingsEditor" timestamp="1689610381356">
+    <state width="1899" height="189" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691849703215" />
+    <state width="1899" height="189" key="GridCell.Tab.0.center" timestamp="1691849703215">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="534" y="339" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689610381356" />
+    <state width="1899" height="189" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691849703215" />
+    <state width="1899" height="189" key="GridCell.Tab.0.left" timestamp="1691849703215">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="189" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691849703215" />
+    <state width="1899" height="189" key="GridCell.Tab.0.right" timestamp="1691849703215">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="189" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691849703215" />
+    <state x="224" y="40" width="1383" height="1040" key="SettingsEditor" timestamp="1691805804828">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="224" y="40" width="1383" height="1040" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691805804828" />
+    <state x="552" y="293" key="Vcs.Push.Dialog.v2" timestamp="1689817632852">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="552" y="293" key="Vcs.Push.Dialog.v2/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1689817632852" />
+    <state x="670" y="302" width="584" height="516" key="find.popup" timestamp="1691848542801">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="670" y="302" width="584" height="516" key="find.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691848542801" />
+    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1691801931709">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691801931709" />
   </component>
 </project>

@@ -18,7 +18,7 @@ module.exports = function (api) {
             app: "./src/app",
             layouts: "./src/layouts",
           },
-        },
+        }
       ],
     ],
   };

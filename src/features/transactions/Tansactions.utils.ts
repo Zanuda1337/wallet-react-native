@@ -1,0 +1,1 @@
+import {TItemCategories} from "features/transactions/Transactions.types";export const canAccept = (itemType: TItemCategories, categories: TItemCategories[]): boolean => {	return categories.includes(itemType)}

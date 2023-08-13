@@ -1,0 +1,1 @@
+export const ITEM_ICONS = [	'wallet',	'services',	'work',	'chart',	'home',	'insertChart',	'statistics',	'fastFood',]
