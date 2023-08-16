@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { theme } from "src/assets/styles/theme";
-import { style } from "features/transactions/style";
 import Item from "features/transactions/item/Item";
 import {
   Categories,
@@ -11,7 +9,7 @@ import {
 } from "features/transactions/Transactions.types";
 import { canAccept } from "features/transactions/Tansactions.utils";
 import TransactionModal, {
-  TTransactionFieldValues,
+  ITransactionFieldValues,
 } from "src/components/transactionModal/TransactionModal";
 import IconButton from "src/components/iconButton/IconButton";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
@@ -22,6 +20,8 @@ import Dialogue from "src/components/dialogue/Dialogue";
 import Checkbox from "src/components/checkbox/Checkbox";
 import { FormattedMessage, useIntl } from "react-intl";
 import { capitalize } from "src/utils";
+import { useStyles, useTheme } from "src/hooks";
+import { transactionStyles } from "features/transactions/style";
 
 const categories = [
   {
@@ -44,6 +44,8 @@ const categories = [
 type TTransactionsProps = {};
 
 const Transactions: React.FC<TTransactionsProps> = ({}) => {
+  const style = useStyles(transactionStyles);
+  const theme = useTheme();
   const items = useAppSelector((state) => state.transactionsReducer.items);
   const [transferredItem, setTransferredItem] = useState<TItem>();
   const [acceptedItem, setAcceptedItem] = useState<TItem>();
@@ -95,13 +97,14 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
     setItemEditing(undefined);
   };
 
-  const handleAddTransaction = (data: TTransactionFieldValues) => {
+  const handleAddTransaction = (data: ITransactionFieldValues) => {
     const transaction: TTransactionBase = {
       ...data,
+      date: data.date.toString(),
       fromItemId: transferredItem?.id,
       toItemId: acceptedItem?.id,
     };
-    //dispatch
+    boundActions.createTransaction(transaction);
     handleCloseTransactionModal();
   };
 
@@ -197,8 +200,8 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
           `${intl.formatMessage({ id: "edit" })} ${
             !!itemEditing
               ? intl.formatMessage({
-                id: itemEditing?.type,
-              })
+                  id: itemEditing?.type,
+                })
               : ""
           }`
         )}
@@ -221,8 +224,7 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
       >
         <>
           <Text style={[theme.styles.dialogueText]}>
-            <FormattedMessage  id='UNDONE_ACTION_WARN'/>
-
+            <FormattedMessage id="UNDONE_ACTION_WARN" />
           </Text>
 
           <View
@@ -240,7 +242,7 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
                 fontFamily: "Inter-SemiBold",
               }}
             >
-              <FormattedMessage  id='DELETE_ALL_TRANSACTIONS'/>
+              <FormattedMessage id="DELETE_ALL_TRANSACTIONS" />
             </Text>
             <Checkbox
               checked={deleteAllTransactions}

@@ -1,33 +1,29 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Dimensions, ScrollView } from "react-native";
+import { View, Text, Dimensions, ScrollView, FlatList } from "react-native";
 import TextField from "src/components/textField/TextField";
 import Dialogue from "src/components/dialogue/Dialogue";
-import { style } from "./style";
+import { datePickerStyles } from "./style";
 import moment from "moment";
-import {capitalize, createArray, daysPast} from "src/utils";
+import { capitalize, createArray, daysPast } from "src/utils";
 import IconButton, {
   IconButtonVariant,
 } from "src/components/iconButton/IconButton";
-import { theme } from "src/assets/styles/theme";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
 import Button from "src/components/button/Button";
-import {FormattedMessage, IntlShape, useIntl} from "react-intl";
+import { FormattedMessage, IntlShape, useIntl } from "react-intl";
+import { useStyles, useTheme } from "src/hooks";
 
-const itemWidth =
-  Dimensions.get("screen").width / 7 -
-  style.horizontalList.gap / 7 -
-  theme.styles.container.paddingHorizontal;
-
-const years = createArray(100, 1970);
+const years = createArray(200, 1970);
 
 const getDisplayedDate = (
   date: Date,
   passedDays: number,
   intl: IntlShape,
-  format = "dd, MMM D",
+  format = "dd, MMM D"
 ): string => {
-  if (passedDays === 0) return capitalize(intl.formatMessage({id: 'today'}));
-  if (passedDays === 1) return capitalize(intl.formatMessage({id: 'yesterday'}));
+  if (passedDays === 0) return capitalize(intl.formatMessage({ id: "today" }));
+  if (passedDays === 1)
+    return capitalize(intl.formatMessage({ id: "yesterday" }));
   return moment(date).format(format);
 };
 
@@ -50,13 +46,19 @@ const DatePicker: React.FC<TDatePickerProps> = ({
   onSubmit,
   dateFormat = "DD.MM.YYYY",
 }) => {
+  const style = useStyles(datePickerStyles);
+  const theme = useTheme();
+  const itemWidth =
+    Dimensions.get("screen").width / 7 -
+    style.horizontalList.gap / 7 -
+    theme.styles.container.paddingHorizontal;
   const [visible, setVisible] = useState(false);
   const [day, setDay] = useState(value.getDate());
   const [month, setMonth] = useState(value.getMonth());
   const [year, setYear] = useState(value.getFullYear());
   const [showYears, setShowYears] = useState(false);
 
-  const intl = useIntl()
+  const intl = useIntl();
 
   const [date, setDate] = useState(value);
 
@@ -66,7 +68,6 @@ const DatePicker: React.FC<TDatePickerProps> = ({
     month: moment().month(),
     year: moment().year(),
   });
-
 
   const lastDayOfMonthDate = moment(viewDate).endOf("month");
   const firstWeekdayDate = moment(viewDate).startOf("month");
@@ -110,9 +111,9 @@ const DatePicker: React.FC<TDatePickerProps> = ({
       month: possibleDate.month(),
       year: possibleDate.year(),
     }).toDate();
-    if(moment(newDate).isAfter(today)) {
-      newDate = today.toDate()
-      setMonth(newDate.getMonth())
+    if (moment(newDate).isAfter(today)) {
+      newDate = today.toDate();
+      setMonth(newDate.getMonth());
     }
     setDate(newDate);
     setDay(newDay);
@@ -180,42 +181,6 @@ const DatePicker: React.FC<TDatePickerProps> = ({
     [month, year, today, date]
   );
 
-  const yearsMap = useMemo(
-    () =>
-      allYears.map((yearNumber, i) => {
-        const currentDate = moment({
-          date: day,
-          month,
-          year: yearNumber,
-        });
-
-        const isSelectedDay = moment(date).isSame(currentDate);
-        return (
-          <Button
-            translate={false}
-            styles={{
-              root: {
-                borderRadius: 40,
-                padding: 6,
-                width:
-                  Dimensions.get("screen").width / 4 -
-                  style.horizontalList.gap / 4 -
-                  theme.styles.container.paddingHorizontal -
-                  3 -
-                  7.5,
-              },
-              text: { fontSize: 14 },
-            }}
-            onPress={() => handleSelectYear(yearNumber)}
-            key={i}
-            variant={isSelectedDay ? "filled" : "ghost"}
-            text={yearNumber.toString()}
-          />
-        );
-      }),
-    [day, month, date]
-  );
-
   return (
     <View>
       <TextField
@@ -238,7 +203,9 @@ const DatePicker: React.FC<TDatePickerProps> = ({
         }}
         header={
           <View style={[style.dialogueHeader, style.container]}>
-            <Text style={[style.title, style.lightText]}><FormattedMessage id='SELECT_DATE'/></Text>
+            <Text style={[style.title, style.lightText]}>
+              <FormattedMessage id="SELECT_DATE" />
+            </Text>
             <Text style={[style.subtext, style.lightText]}>
               {getDisplayedDate(date, daysPast(today.toDate(), date), intl)}
             </Text>
@@ -267,7 +234,7 @@ const DatePicker: React.FC<TDatePickerProps> = ({
                   setShowYears(!showYears);
                 }}
               >
-                <Text>{viewDate.format("MMMM YYYY")}</Text>
+                <Text style={style.text}>{viewDate.format("MMMM YYYY")}</Text>
               </View>
               <IconButton
                 size={25}
@@ -316,14 +283,14 @@ const DatePicker: React.FC<TDatePickerProps> = ({
           {!showYears ? (
             <>
               <View style={style.horizontalList}>
-                {moment.weekdays().map((day, i) => (
+                {moment.weekdaysMin().map((day, i) => (
                   <Text
                     style={{
                       ...style.text,
                       width: itemWidth,
                       color: theme.colors.subtext,
                       textAlign: "center",
-                      textTransform: "capitalize"
+                      textTransform: "capitalize",
                     }}
                     key={i}
                   >
@@ -344,9 +311,53 @@ const DatePicker: React.FC<TDatePickerProps> = ({
               </View>
             </>
           ) : (
-            <ScrollView style={{ maxHeight: 300 }}>
-              <View style={style.horizontalList}>{yearsMap}</View>
-            </ScrollView>
+            <FlatList
+              keyExtractor={(item) => item.toString()}
+              contentContainerStyle={{
+                display: "flex",
+                gap: 5,
+              }}
+              data={allYears}
+              style={{ maxHeight: 300 }}
+              numColumns={4}
+              renderItem={({ item: yearNumber, index: i }) => {
+                const currentDate = moment({
+                  date: day,
+                  month,
+                  year: yearNumber,
+                });
+
+                const isSelectedDay = moment(date).isSame(currentDate);
+                return (
+                  <Button
+                    translate={false}
+                    styles={{
+                      root: {
+                        borderRadius: 40,
+                        padding: 6,
+                        width:
+                          Dimensions.get("screen").width / 4 -
+                          style.horizontalList.gap / 4 -
+                          theme.styles.container.paddingHorizontal -
+                          3 -
+                          7.5,
+                      },
+                      text: {
+                        fontSize: 14,
+                        fontFamily: "Inter-SemiBold",
+                        color: isSelectedDay
+                          ? theme.colors.independentForeground
+                          : theme.colors.foreground,
+                      },
+                    }}
+                    onPress={() => handleSelectYear(yearNumber)}
+                    key={i}
+                    variant={isSelectedDay ? "filled" : "ghost"}
+                    text={yearNumber.toString()}
+                  />
+                );
+              }}
+            />
           )}
         </View>
       </Dialogue>

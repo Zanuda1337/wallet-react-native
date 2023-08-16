@@ -1,1 +1,1 @@
-import {StyleSheet} from "react-native";import {theme} from "src/assets/styles/theme";export const style = StyleSheet.create({	container: {		backgroundColor: theme.colors.background,		height: '100%'	},})
+import { createStyles } from "src/utils";export const itemModalstyles = createStyles((theme) => ({  container: {    backgroundColor: theme.colors.background,    height: "100%",  },}));

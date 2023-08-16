@@ -8,10 +8,10 @@ import {
   Easing,
 } from "react-native";
 import TextField from "src/components/textField/TextField";
-import { style } from "./style";
+import {selectStyles} from "./style";
 import Button from "src/components/button/Button";
 import { TOption } from "src/components/select/Select.types";
-import { useTransition } from "src/hooks";
+import {useStyles, useTransition} from "src/hooks";
 import absoluteFill = StyleSheet.absoluteFill;
 import { useIntl } from "react-intl";
 import { capitalize } from "src/utils";
@@ -31,6 +31,7 @@ const Select: React.FC<TSelectProps> = ({
   onChange,
   renderValue,
 }) => {
+  const style = useStyles(selectStyles);
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(visible);
   const intl = useIntl();

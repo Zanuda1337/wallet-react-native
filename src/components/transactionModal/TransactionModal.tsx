@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Modal, View, Text, Animated } from "react-native";
-import { style } from "./style";
-import { theme } from "src/assets/styles/theme";
+import { transactionModalStyles} from "./style";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
-import {useFormatMoney, useTransition} from "src/hooks";
+import {useFormatMoney, useStyles, useTheme, useTransition} from "src/hooks";
 import Form from "src/components/form/Form";
 import RenderCheckbox from "src/components/form/renderCheckbox/RenderCheckbox";
 import RenderCalculator from "src/components/form/renderCalculator/RenderCalculator";
 import { TTransaction } from "features/transactions/Transactions.types";
 import RenderDatePicker from "src/components/form/renderDatePicker/RenderDatePicker";
-import moment from "moment";
+import {pureDate} from "src/utils";
 
-export type TTransactionFieldValues = Pick<
+export interface ITransactionFieldValues extends Pick<
   TTransaction,
-  "amount" | "date" | "isRepeat" | "note"
->;
+  "amount" | "isRepeat" | "note"
+> {
+  date: Date
+};
 
 type TModalProps = {
   visible: boolean;
@@ -23,7 +24,7 @@ type TModalProps = {
   icon: string;
   onBackdropPress: () => void;
   onHide: () => void;
-  onSubmit: (data: TTransactionFieldValues) => void;
+  onSubmit: (data: ITransactionFieldValues) => void;
 };
 
 const TransactionModal: React.FC<TModalProps> = ({
@@ -35,6 +36,8 @@ const TransactionModal: React.FC<TModalProps> = ({
   onHide,
   onSubmit,
 }) => {
+  const style = useStyles(transactionModalStyles);
+  const theme = useTheme();
   const top = useTransition(100, 0, visible, { duration: 400 });
   const [show, setShow] = useState(visible);
   const [amount, setAmount] = useState(0);
@@ -115,11 +118,7 @@ const TransactionModal: React.FC<TModalProps> = ({
                     },
                     {
                       name: "date",
-                      initialValue: moment({
-                        date: new Date().getDate(),
-                        month: new Date().getMonth(),
-                        year: new Date().getFullYear(),
-                      }).toDate(),
+                      initialValue: pureDate(),
                       component: RenderDatePicker,
                       props: { disableFuture: true },
                     },
