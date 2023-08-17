@@ -25,6 +25,7 @@ type TModalProps = {
   onBackdropPress: () => void;
   onHide: () => void;
   onSubmit: (data: ITransactionFieldValues) => void;
+  initialValues?: ITransactionFieldValues
 };
 
 const TransactionModal: React.FC<TModalProps> = ({
@@ -32,6 +33,7 @@ const TransactionModal: React.FC<TModalProps> = ({
   from,
   icon,
   to,
+  initialValues,
   onBackdropPress,
   onHide,
   onSubmit,
@@ -45,7 +47,7 @@ const TransactionModal: React.FC<TModalProps> = ({
 
   useEffect(() => {
     if (visible) {
-      setAmount(0);
+      setAmount(initialValues?.amount || 0);
       setShow(true);
       return () => clearTimeout(id);
     }
@@ -54,7 +56,7 @@ const TransactionModal: React.FC<TModalProps> = ({
       setShow(false);
     }, 370);
     return () => clearTimeout(id);
-  }, [visible]);
+  }, [visible, initialValues]);
 
   return (
     <>
@@ -98,7 +100,7 @@ const TransactionModal: React.FC<TModalProps> = ({
                   fields={[
                     {
                       name: "amount",
-                      initialValue: 0,
+                      initialValue: initialValues?.amount || 0,
                       component: RenderCalculator,
                       rules: {
                         validate: {
@@ -118,19 +120,19 @@ const TransactionModal: React.FC<TModalProps> = ({
                     },
                     {
                       name: "date",
-                      initialValue: pureDate(),
+                      initialValue: initialValues?.date || pureDate(),
                       component: RenderDatePicker,
                       props: { disableFuture: true },
                     },
                     {
                       name: "isRepeat",
                       label: "repeat",
-                      initialValue: false,
+                      initialValue: initialValues?.isRepeat || false,
                       component: RenderCheckbox,
                     },
                     {
                       name: "note",
-                      initialValue: "",
+                      initialValue: initialValues?.note || '',
                       props: { multiline: true },
                     },
                   ]}

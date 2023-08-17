@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, Dimensions, ScrollView, FlatList } from "react-native";
+import { View, Text, Dimensions,  FlatList } from "react-native";
 import TextField from "src/components/textField/TextField";
 import Dialogue from "src/components/dialogue/Dialogue";
 import { datePickerStyles } from "./style";
