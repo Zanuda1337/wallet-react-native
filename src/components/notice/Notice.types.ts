@@ -1,0 +1,1 @@
+export type TNotice = {	id: number;	message: string;	type: TNoticeType;	animating: boolean}export type TNoticeType = 'warning' | 'error' | 'info' | 'success'

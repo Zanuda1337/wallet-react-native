@@ -1,52 +1,54 @@
-import React, { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import React, {useEffect, useMemo, useState} from "react";
+import {Dimensions, FlatList, LayoutRectangle, Text, View} from "react-native";
 import Item from "features/transactions/item/Item";
 import {
   Categories,
   TItem,
   TItemCategories,
+  TTransaction,
   TTransactionBase,
 } from "features/transactions/Transactions.types";
-import { canAccept } from "features/transactions/Tansactions.utils";
-import TransactionModal, {
-  ITransactionFieldValues,
-} from "src/components/transactionModal/TransactionModal";
+import {canAccept} from "features/transactions/Tansactions.utils";
+import TransactionModal, {ITransactionFieldValues,} from "src/components/transactionModal/TransactionModal";
 import IconButton from "src/components/iconButton/IconButton";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
 import ItemModal from "src/components/itemModal/ItemModal";
-import { useAppSelector, useBoundActions } from "src/store/hooks";
-import { transactionsActions } from "./Transactions.slice";
+import {useAppSelector, useBoundActions} from "src/store/hooks";
+import {transactionsActions} from "./Transactions.slice";
 import Dialogue from "src/components/dialogue/Dialogue";
-import Checkbox from "src/components/checkbox/Checkbox";
-import { FormattedMessage, useIntl } from "react-intl";
-import { capitalize } from "src/utils";
-import { useStyles, useTheme } from "src/hooks";
-import { transactionStyles } from "features/transactions/style";
+import Switch from "src/components/switch/Switch";
+import {FormattedMessage, useIntl} from "react-intl";
+import {capitalize, getBalance, getDynamics} from "src/utils";
+import {useStyles, useTheme} from "src/hooks";
+import {transactionStyles} from "features/transactions/style";
 
 const categories = [
   {
     name: Categories.income,
-    label: "income",
+    label: "incomes",
     canAccept: [],
   },
   {
     name: Categories.wallet,
-    label: "wallet",
+    label: "wallets",
     canAccept: [Categories.wallet, Categories.income],
   },
   {
     name: Categories.expense,
-    label: "expense",
+    label: "expenses",
     canAccept: [Categories.wallet],
   },
 ];
 
-type TTransactionsProps = {};
-
-const Transactions: React.FC<TTransactionsProps> = ({}) => {
+const Transactions: React.FC = () => {
   const style = useStyles(transactionStyles);
   const theme = useTheme();
-  const items = useAppSelector((state) => state.transactionsReducer.items);
+  const items: TItem[] = useAppSelector(
+    (state) => state.transactionsReducer.items
+  );
+  const transactions: TTransaction[] = useAppSelector(
+    (state) => state.transactionsReducer.transactions
+  );
   const [transferredItem, setTransferredItem] = useState<TItem>();
   const [acceptedItem, setAcceptedItem] = useState<TItem>();
   const [itemCreating, setItemCreating] = useState<
@@ -55,9 +57,18 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
   const [itemEditing, setItemEditing] = useState<TItem | undefined>();
   const [itemDeleting, setItemDeleting] = useState<TItem | undefined>();
   const [deleteAllTransactions, setDeleteAllTransactions] = useState(false);
+  const [expensesLayout, setExpensesLayout] = useState<LayoutRectangle>(undefined)
 
   const boundActions = useBoundActions(transactionsActions);
   const intl = useIntl();
+
+  const dynamics = useMemo(
+    () => getDynamics(transactions, items, "months"),
+    [transactions, items]
+  );
+  const monthTransactions = [];
+  if (dynamics.length) monthTransactions.push(dynamics.at(-1));
+  const { wallets } = getBalance(transactions, items);
 
   const handleSelectItem = (item: TItem) => {
     setTransferredItem(transferredItem?.id === item.id ? undefined : item);
@@ -69,11 +80,15 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
     setTransferredItem(undefined);
     setAcceptedItem(undefined);
   };
-  const handleAddItem = (item: Pick<TItem, "name" | "icon">) => {
+  const handleAddItem = (
+    item: Pick<TItem, "name" | "icon" | "initialBalance">
+  ) => {
     boundActions.addItem({ ...item, type: itemCreating });
     setItemCreating(undefined);
   };
-  const handleEditItem = (item: Pick<TItem, "name" | "icon">) => {
+  const handleEditItem = (
+    item: Pick<TItem, "name" | "icon" | "initialBalance">
+  ) => {
     boundActions.editItem({ ...itemEditing, ...item });
     setItemEditing(undefined);
   };
@@ -84,98 +99,143 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
     setItemDeleting(undefined);
     setDeleteAllTransactions(false);
   };
-
   const handleDeleteItem = () => {
-    //deleteAllTransactions
-    //dispatch
-    console.log(
-      `delete ${itemDeleting.name} ${
-        deleteAllTransactions ? "with" : "and leave"
-      } transactions`
-    );
+    boundActions.deleteItem({
+      itemId: itemDeleting.id,
+      withTransactions: deleteAllTransactions,
+    });
     handleCloseDeleteDialogue();
     setItemEditing(undefined);
   };
 
   const handleAddTransaction = (data: ITransactionFieldValues) => {
-    const transaction: TTransactionBase = {
-      ...data,
-      date: data.date.toString(),
+    const {isRepeat, ...newData} = data
+    const transactionBase: TTransactionBase = {
+      ...newData,
+      date: newData.date.toString(),
       fromItemId: transferredItem?.id,
       toItemId: acceptedItem?.id,
     };
-    boundActions.createTransaction(transaction);
+    boundActions.createTransaction({transactionBase, isRepeat});
     handleCloseTransactionModal();
   };
 
+  const getCashFlow = (item: TItem): number | undefined => {
+    if (item.type !== Categories.wallet) return;
+    return wallets.find((i) => i.itemId === item.id)?.balance || 0;
+  };
+
+  const numColumns = Math.round(
+    (Dimensions.get("screen").width -
+      theme.styles.container.paddingHorizontal) /
+      72
+  );
+
   return (
     <View style={[style.wrapper]}>
-      {categories.map((category) => (
-        <View
-          key={category.name}
-          style={[theme.styles.container, style.container]}
-        >
-          <View>
-            <Text style={theme.styles.title}>
-              <FormattedMessage id={category.label} />
-            </Text>
-          </View>
-          <ScrollView horizontal>
-            <View style={style.list}>
-              {items
-                .filter((item) => item.type === category.name)
-                .map((item) => {
+      {categories.map((category) => {
+        const isExpenses = category.name === Categories.expense;
+        const visibleItems = [
+          ...items.filter(
+            (item) => item.type === category.name && item.visible
+          ),
+          undefined,
+        ];
+        return (
+          <View
+            key={category.name}
+            style={[
+              theme.styles.container,
+              style.container,
+              { maxHeight: isExpenses ? Dimensions.get('screen').height - (expensesLayout?.y || 0) - 225: '100%' },
+            ]}
+            onLayout={(e) => {
+              if(category.name !== Categories.expense) return
+              if(expensesLayout !== undefined) return;
+              setExpensesLayout(e.nativeEvent.layout);
+            }}
+          >
+            <View>
+              <Text style={{ ...theme.styles.title, marginTop: -10 }}>
+                <FormattedMessage id={category.label} />
+              </Text>
+            </View>
+              <FlatList
+                horizontal={!isExpenses}
+                numColumns={isExpenses ? numColumns : undefined}
+                contentContainerStyle={{
+                  ...style.list,
+                  flexDirection: isExpenses ? "column" : "row",
+                }}
+                style={{marginBottom: 20}}
+                data={visibleItems}
+                keyExtractor={(item) => (item ? item.id.toString() : "-1")}
+                renderItem={({ item }) => {
                   const isCurrentItemTransferring =
-                    transferredItem?.id === item.id;
+                    transferredItem?.id === item?.id;
                   const canAcceptTransfer = canAccept(
                     transferredItem?.type,
                     category.canAccept
                   );
                   return (
-                    <Item
-                      key={item.id}
-                      type={item.type}
-                      name={item.name}
-                      icon={item.icon}
-                      cashFlow={item.cashFlow}
-                      isActive={isCurrentItemTransferring}
-                      disabled={
-                        transferredItem &&
-                        !isCurrentItemTransferring &&
-                        !canAcceptTransfer
-                      }
-                      onPress={() => {
-                        if (!isCurrentItemTransferring && canAcceptTransfer)
-                          handleTransfer(item);
-                        else if (item.type !== Categories.expense)
-                          handleSelectItem(item);
-                      }}
-                      onLongPress={() => setItemEditing(item)}
-                    />
+                    <>
+                      {item ? (
+                        <Item
+                          key={item.id}
+                          type={item.type}
+                          name={item.name}
+                          icon={item.icon}
+                          cashFlow={getCashFlow(item)}
+                          isActive={isCurrentItemTransferring}
+                          disabled={
+                            transferredItem &&
+                            !isCurrentItemTransferring &&
+                            !canAcceptTransfer
+                          }
+                          onPress={() => {
+                            if (!isCurrentItemTransferring && canAcceptTransfer)
+                              handleTransfer(item);
+                            else if (item.type !== Categories.expense)
+                              handleSelectItem(item);
+                          }}
+                          onLongPress={() => setItemEditing(item)}
+                        />
+                      ) : (
+                        <View
+                          style={{
+                            width: 72,
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <IconButton
+                            styles={{
+                              root: {
+                                borderStyle: "dashed",
+                                borderColor: theme.colors.subtext,
+                                borderWidth: 2,
+                              },
+                            }}
+                            variant="ghost"
+                            size="medium"
+                            icon={
+                              <SvgSelector
+                                id="plus"
+                                stroke={theme.colors.subtext}
+                                size={20}
+                              />
+                            }
+                            onPress={() => setItemCreating(category.name)}
+                          />
+                        </View>
+                      )}
+                    </>
                   );
-                })}
-              <IconButton
-                styles={{
-                  root: {
-                    borderStyle: "dashed",
-                    borderColor: theme.colors.subtext,
-                    borderWidth: 2,
-                  },
                 }}
-                size="large"
-                icon={
-                  <SvgSelector
-                    id="plus"
-                    stroke={theme.colors.subtext}
-                    size={20}
-                  />
-                }
-                onPress={() => setItemCreating(category.name)}
               />
-            </View>
-          </ScrollView>
-        </View>
-      ))}
+          </View>
+        );
+      })}
       <ItemModal
         label={capitalize(
           `${intl.formatMessage({ id: "create" })} ${
@@ -196,6 +256,7 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
         onClose={() => setItemCreating(undefined)}
       />
       <ItemModal
+        id={itemEditing?.id}
         label={capitalize(
           `${intl.formatMessage({ id: "edit" })} ${
             !!itemEditing
@@ -205,7 +266,11 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
               : ""
           }`
         )}
-        initialValues={{ icon: itemEditing?.icon, name: itemEditing?.name }}
+        initialValues={{
+          icon: itemEditing?.icon,
+          name: itemEditing?.name,
+          initialBalance: itemEditing?.initialBalance,
+        }}
         itemType={itemEditing?.type}
         visible={!!itemEditing}
         onSubmit={handleEditItem}
@@ -244,7 +309,7 @@ const Transactions: React.FC<TTransactionsProps> = ({}) => {
             >
               <FormattedMessage id="DELETE_ALL_TRANSACTIONS" />
             </Text>
-            <Checkbox
+            <Switch
               checked={deleteAllTransactions}
               onChange={toggleDeleteAllTransactions}
             />

@@ -31,13 +31,14 @@ const darkThemeColors = {
   checkboxChecked: '#fff',
   independentForeground: '#fff',
   selectBackground: '#313131',
-  success: '#26DD38'
+  success: '#26DD38',
+  primaryLight: '#a9c1fa'
 };
 const lightThemeColors = {
   primary: "#2D79FF",
   secondary: "#DD82EC",
   background: "#efefef",
-  foreground: "#232323",
+  foreground: "#444d5a",
   subtext: "#b1b1b1",
   icons: "#fff",
   pale: "#d7d7d7",
@@ -54,7 +55,8 @@ const lightThemeColors = {
   checkboxChecked: '#fff',
   independentForeground: '#fff',
   selectBackground: '#232323',
-  success: '#26DD38'
+  success: '#26DD38',
+  primaryLight: '#8aa8ec'
 };
 
 export const createTheme = (
@@ -64,6 +66,7 @@ export const createTheme = (
 ) => {
   const colors = mode === "light" ? lightThemeColors : darkThemeColors;
   return {
+    mode,
     colors,
     styles: StyleSheet.create({
       circle: {
@@ -156,8 +159,7 @@ export const ThemeContext = createContext<Theme>(
 );
 
 const ThemeProvider: React.FC<TThemeProviderProps> = ({ children }) => {
-  const themeType = useAppSelector((state) => state.settingsReducer.theme);
-  if(!themeType) return <></>
+  const themeType = useAppSelector((state) => state.settingsReducer.theme) || 'light';
   const systemTheme = useColorScheme() || 'light'
   const newTheme =
     themeType === "system" ? systemTheme : themeType;

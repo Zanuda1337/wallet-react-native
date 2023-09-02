@@ -1,0 +1,1 @@
+import { routes } from "features/router/Router.consts";export const getRoutesList = (layoutId?: number) =>  Object.entries(routes)    .map(([key, route]) => ({ ...route, path: key }))    .filter((route) => (layoutId ? route.layoutId === layoutId : true));

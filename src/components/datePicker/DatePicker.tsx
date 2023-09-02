@@ -62,7 +62,7 @@ const DatePicker: React.FC<TDatePickerProps> = ({
 
   const [date, setDate] = useState(value);
 
-  const viewDate = moment({ date: day, month, year });
+  const viewDate = moment({  month, year });
   const today = moment({
     day: moment().date(),
     month: moment().month(),
@@ -94,7 +94,7 @@ const DatePicker: React.FC<TDatePickerProps> = ({
       setMonth(Math.abs(12 - Math.abs(newMonth)));
       return;
     }
-    const currentDate = moment({ date: day, month: newMonth, year });
+    const currentDate = moment({ month: newMonth, year });
     if (disableFuture && currentDate.isAfter(today)) return;
     setMonth(newMonth);
   };

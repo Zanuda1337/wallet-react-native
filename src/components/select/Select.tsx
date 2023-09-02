@@ -5,16 +5,17 @@ import {
   LayoutRectangle,
   Animated,
   StyleSheet,
-  Easing,
+  Easing, Dimensions,
 } from "react-native";
 import TextField from "src/components/textField/TextField";
-import {selectStyles} from "./style";
+import { selectStyles } from "./style";
 import Button from "src/components/button/Button";
 import { TOption } from "src/components/select/Select.types";
-import {useStyles, useTransition} from "src/hooks";
+import { useStyles, useTransition } from "src/hooks";
 import absoluteFill = StyleSheet.absoluteFill;
 import { useIntl } from "react-intl";
 import { capitalize } from "src/utils";
+import { FlatList } from "react-native";
 
 type TSelectProps = {
   label: string;
@@ -52,7 +53,7 @@ const Select: React.FC<TSelectProps> = ({
     if (renderValue) return renderValue(text);
     const string = intl.formatMessage({ id: text });
     if (isCapitalize) return capitalize(string);
-    return string
+    return string;
   };
   const [layout, setLayout] = useState<LayoutRectangle>();
   return (
@@ -61,7 +62,8 @@ const Select: React.FC<TSelectProps> = ({
         label={label}
         disabled={true}
         value={displayLabel(
-          options.find((opt) => opt.value === value)?.label || "", true
+          options.find((opt) => opt.value === value)?.label || "",
+          true
         )}
         onPress={handleOpen}
       />
@@ -71,6 +73,7 @@ const Select: React.FC<TSelectProps> = ({
             onTouchStart={(e) => e.stopPropagation()}
             style={{
               ...style.container,
+              maxHeight: Dimensions.get('screen').height - (layout?.y + +layout?.height) - 150,
               top:
                 transition.interpolate({
                   inputRange: [0, 1],
@@ -90,19 +93,36 @@ const Select: React.FC<TSelectProps> = ({
               opacity: transition,
             }}
           >
-            {options.map((option) => (
-              <Button
-                translate={false}
-                key={option.value}
-                text={displayLabel(option.label, false)}
-                variant={value === option.value ? "filled" : "ghost"}
-                styles={{ root: style.option, text: style.optionText }}
-                onPress={() => {
-                  onChange(option.value);
-                  handleClose();
-                }}
-              />
-            ))}
+            <FlatList
+              data={options}
+              keyExtractor={(item) => item.value}
+              renderItem={({ item: option }) => (
+                <Button
+                  translate={false}
+                  text={displayLabel(option.label, false)}
+                  variant={value === option.value ? "filled" : "ghost"}
+                  styles={{ root: style.option, text: style.optionText }}
+                  onPress={() => {
+                    onChange(option.value);
+                    handleClose();
+                  }}
+                />
+              )}
+            />
+
+            {/*{options.map((option) => (*/}
+            {/*  <Button*/}
+            {/*    translate={false}*/}
+            {/*    key={option.value}*/}
+            {/*    text={displayLabel(option.label, false)}*/}
+            {/*    variant={value === option.value ? "filled" : "ghost"}*/}
+            {/*    styles={{ root: style.option, text: style.optionText }}*/}
+            {/*    onPress={() => {*/}
+            {/*      onChange(option.value);*/}
+            {/*      handleClose();*/}
+            {/*    }}*/}
+            {/*  />*/}
+            {/*))}*/}
           </Animated.View>
         </View>
       </Modal>

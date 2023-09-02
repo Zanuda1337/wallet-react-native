@@ -1,0 +1,1 @@
+export type TChartTiming = 'years' | 'months' | 'weeks' | 'days';export interface IFilterOption {	label: string	value: number;	icon: string;}

@@ -3,10 +3,20 @@ import React, { useCallback, useEffect } from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import Router from "features/router/Router";
-import {createStyles} from "src/utils";
-import {useStyles} from "src/hooks";
+import { createStyles } from "src/utils";
+import { useStyles } from "src/hooks";
+import { useAppSelector, useBoundActions } from "src/store/hooks";
+import { settingsActions } from "features/settings/Settings.slice";
+import NoticeProvider from "src/providers/noticeProvider/NoticeProvider";
+import { transactionsActions } from "src/features/transactions/Transactions.slice";
 
 const Main = () => {
+  const initialized = useAppSelector(
+    (state) => state.settingsReducer.initialized
+  );
+  const transactions = useAppSelector(state => state.transactionsReducer.transactions);
+  const repeatTemplates = useAppSelector(state => state.transactionsReducer.repeatTemplates);
+  const boundActions = useBoundActions({...settingsActions, ...transactionsActions});
   const [fontsLoaded] = useFonts({
     "Inter-ExtraLight": require("./src/assets/fonts/Inter-ExtraLight.ttf"),
     "Inter-Light": require("./src/assets/fonts/Inter-Light.ttf"),
@@ -26,6 +36,15 @@ const Main = () => {
     prepare();
   }, []);
 
+  useEffect(() => {
+    if (!initialized) {
+      boundActions.init();
+    }
+  }, [initialized]);
+  useEffect(() => {
+    boundActions.repeatTransactions()
+  }, [])
+
   const onLayout = useCallback(async () => {
     if (fontsLoaded) await SplashScreen.hideAsync();
   }, [fontsLoaded]);
@@ -42,7 +61,9 @@ const Main = () => {
         ...StyleSheet.absoluteFillObject,
       }}
     >
-      <Router />
+      <NoticeProvider>
+        <Router />
+      </NoticeProvider>
     </SafeAreaView>
   );
 };
