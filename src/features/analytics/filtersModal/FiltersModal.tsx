@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
 import { useStyles, useTheme } from "src/hooks";
-import { analyticsStyles } from "features/analytics/style";
+import { statisticsStyles } from "src/components/charts/style";
 import Dialogue from "src/components/dialogue/Dialogue";
 import Header from "src/components/header/Header";
 import {FormattedMessage, useIntl} from "react-intl";
@@ -26,7 +26,7 @@ const FiltersModal: React.FC<TFilterListProps> = ({
   onChange
 }) => {
   const theme = useTheme();
-  const style = useStyles(analyticsStyles);
+  const style = useStyles(statisticsStyles);
   const {formatMessage} = useIntl();
   const initialFilters = useMemo(() => ({
     incomes: filtersOptions.incomes.map((option) => option.value),

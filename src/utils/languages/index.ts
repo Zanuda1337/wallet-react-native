@@ -1,1 +1,1 @@
-export { ru } from './ru';export { en } from './en';export { ua } from './ua';export { be } from './be';
+export { ru } from './ru';export { en } from './en';export { uk } from './uk';export { be } from './be';

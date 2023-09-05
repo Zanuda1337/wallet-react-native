@@ -1,8 +1,6 @@
 import React from "react";
-
 import { NativeRouter, Route, Routes } from "react-router-native";
-
-import { layouts, routes } from "./Router.consts";
+import { layouts } from "./Router.consts";
 import { getRoutesList } from "features/router/Router.utils";
 
 type TRouterProps = {};

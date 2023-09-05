@@ -21,6 +21,7 @@
     "expo-document-picker": "~11.2.2",
     "expo-localization": "~14.1.1",
     "expo-media-library": "~15.2.3",
+    "expo-navigation-bar": "~2.1.1",
     "expo-permissions": "~14.1.1",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",

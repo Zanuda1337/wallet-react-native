@@ -114,7 +114,7 @@ const TransactionModal: React.FC<TModalProps> = ({
 
   return (
     <>
-      <Modal transparent={true} visible={show} animationType="fade">
+      <Modal transparent visible={show} animationType="fade" statusBarTranslucent presentationStyle='overFullScreen'>
         {show && (
           <>
             <View

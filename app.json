@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "wallet-react-native",
+    "name": "CashKeeper",
     "slug": "wallet-react-native",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,15 +19,20 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.zanuda1337.cashkeeper"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
     },
     "plugins": [
       "expo-localization"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5dfdbc7e-09d9-46a9-9f85-06cefc03f5bc"
+      }
+    }
   }
 }

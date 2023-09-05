@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useMemo, useState} from "react";
 import {Dimensions, FlatList, LayoutRectangle, Text, View} from "react-native";
 import Item from "features/transactions/item/Item";
 import {
@@ -186,6 +186,7 @@ const Transactions: React.FC = () => {
                           name={item.name}
                           icon={item.icon}
                           cashFlow={getCashFlow(item)}
+                          fullWidth={item.type !== Categories.expense}
                           isActive={isCurrentItemTransferring}
                           disabled={
                             transferredItem &&

@@ -5,7 +5,7 @@ import {
   LayoutRectangle,
   Animated,
   StyleSheet,
-  Easing, Dimensions,
+  Easing, Dimensions, StyleProp, ViewStyle, TextStyle,
 } from "react-native";
 import TextField from "src/components/textField/TextField";
 import { selectStyles } from "./style";
@@ -14,7 +14,7 @@ import { TOption } from "src/components/select/Select.types";
 import { useStyles, useTransition } from "src/hooks";
 import absoluteFill = StyleSheet.absoluteFill;
 import { useIntl } from "react-intl";
-import { capitalize } from "src/utils";
+import {capitalize, clamp} from "src/utils";
 import { FlatList } from "react-native";
 
 type TSelectProps = {
@@ -22,6 +22,7 @@ type TSelectProps = {
   options: TOption[];
   value: string;
   onChange: (value: string) => void;
+  styles?: {root?: StyleProp<ViewStyle>, optionText?: StyleProp<TextStyle>}
   renderValue?: (value: string) => string;
 };
 
@@ -31,6 +32,7 @@ const Select: React.FC<TSelectProps> = ({
   value,
   onChange,
   renderValue,
+  styles
 }) => {
   const style = useStyles(selectStyles);
   const [visible, setVisible] = useState(false);
@@ -57,7 +59,7 @@ const Select: React.FC<TSelectProps> = ({
   };
   const [layout, setLayout] = useState<LayoutRectangle>();
   return (
-    <View onLayout={(event) => setLayout(event.nativeEvent.layout)}>
+    <View onLayout={(event) => setLayout(event.nativeEvent.layout)} style={styles?.root}>
       <TextField
         label={label}
         disabled={true}
@@ -73,7 +75,7 @@ const Select: React.FC<TSelectProps> = ({
             onTouchStart={(e) => e.stopPropagation()}
             style={{
               ...style.container,
-              maxHeight: Dimensions.get('screen').height - (layout?.y + +layout?.height) - 150,
+              maxHeight: clamp(Dimensions.get('screen').height - (layout?.y + +layout?.height) - 150, 0, 250),
               top:
                 transition.interpolate({
                   inputRange: [0, 1],
@@ -101,7 +103,7 @@ const Select: React.FC<TSelectProps> = ({
                   translate={false}
                   text={displayLabel(option.label, false)}
                   variant={value === option.value ? "filled" : "ghost"}
-                  styles={{ root: style.option, text: style.optionText }}
+                  styles={{ root: style.option, text: [style.optionText, styles?.optionText] }}
                   onPress={() => {
                     onChange(option.value);
                     handleClose();
@@ -109,20 +111,6 @@ const Select: React.FC<TSelectProps> = ({
                 />
               )}
             />
-
-            {/*{options.map((option) => (*/}
-            {/*  <Button*/}
-            {/*    translate={false}*/}
-            {/*    key={option.value}*/}
-            {/*    text={displayLabel(option.label, false)}*/}
-            {/*    variant={value === option.value ? "filled" : "ghost"}*/}
-            {/*    styles={{ root: style.option, text: style.optionText }}*/}
-            {/*    onPress={() => {*/}
-            {/*      onChange(option.value);*/}
-            {/*      handleClose();*/}
-            {/*    }}*/}
-            {/*  />*/}
-            {/*))}*/}
           </Animated.View>
         </View>
       </Modal>

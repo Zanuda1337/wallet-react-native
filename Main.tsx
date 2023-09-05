@@ -1,22 +1,32 @@
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback, useEffect } from "react";
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet
+} from "react-native";
 import { useFonts } from "expo-font";
 import Router from "features/router/Router";
 import { createStyles } from "src/utils";
-import { useStyles } from "src/hooks";
+import { useStyles, useTheme } from "src/hooks";
 import { useAppSelector, useBoundActions } from "src/store/hooks";
 import { settingsActions } from "features/settings/Settings.slice";
 import NoticeProvider from "src/providers/noticeProvider/NoticeProvider";
 import { transactionsActions } from "src/features/transactions/Transactions.slice";
+import { useIntl } from "react-intl";
+import * as NavigationBar from "expo-navigation-bar";
 
 const Main = () => {
   const initialized = useAppSelector(
     (state) => state.settingsReducer.initialized
   );
-  const transactions = useAppSelector(state => state.transactionsReducer.transactions);
-  const repeatTemplates = useAppSelector(state => state.transactionsReducer.repeatTemplates);
-  const boundActions = useBoundActions({...settingsActions, ...transactionsActions});
+  const theme = useTheme();
+  const items = useAppSelector((state) => state.transactionsReducer.items);
+  const intl = useIntl();
+  const boundActions = useBoundActions({
+    ...settingsActions,
+    ...transactionsActions,
+  });
   const [fontsLoaded] = useFonts({
     "Inter-ExtraLight": require("./src/assets/fonts/Inter-ExtraLight.ttf"),
     "Inter-Light": require("./src/assets/fonts/Inter-Light.ttf"),
@@ -31,22 +41,32 @@ const Main = () => {
 
   useEffect(() => {
     async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
+      // await SplashScreen.preventAutoHideAsync();
+      await SplashScreen.hideAsync()
     }
     prepare();
+    boundActions.repeatTransactions();
   }, []);
 
   useEffect(() => {
     if (!initialized) {
       boundActions.init();
     }
+    else if (!items.length) boundActions.addDefaultItems(intl);
   }, [initialized]);
+
   useEffect(() => {
-    boundActions.repeatTransactions()
-  }, [])
+    const updateNav = async () => {
+      await NavigationBar.setBackgroundColorAsync(theme.colors.background);
+      await NavigationBar.setButtonStyleAsync(
+        theme.mode === "light" ? "dark" : "light"
+      );
+    };
+    updateNav();
+  }, [theme.mode]);
 
   const onLayout = useCallback(async () => {
-    if (fontsLoaded) await SplashScreen.hideAsync();
+    // if (fontsLoaded) await SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
   if (!fontsLoaded) return null;
@@ -61,6 +81,10 @@ const Main = () => {
         ...StyleSheet.absoluteFillObject,
       }}
     >
+      <StatusBar
+        backgroundColor={theme.colors.background}
+        barStyle={theme.mode === "light" ? "dark-content" : "light-content"}
+      />
       <NoticeProvider>
         <Router />
       </NoticeProvider>
@@ -72,7 +96,6 @@ export default Main;
 
 const appStyles = createStyles((theme) => ({
   container: {
-    paddingTop: StatusBar.currentHeight || 0,
     flex: 1,
     backgroundColor: theme.colors.background,
   },
