@@ -8,12 +8,13 @@ import {
 import Tabs from "src/components/tabs/Tabs";
 import { getAverageCashFlow } from "src/components/charts/Charts.utils";
 import { useFormatMoney, useStyles, useTheme } from "src/hooks";
-import { View, Text, FlatList } from "react-native";
+import { View, Text } from "react-native";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
 import { statisticsStyles } from "features/statistics/style";
 import { useIntl } from "react-intl";
 import Select from "src/components/select/Select";
 import { TChartTiming } from "features/analytics/Analytics.types";
+import {FlashList} from "@shopify/flash-list";
 
 const options: { value: TChartTiming; label: string }[] = [
   {
@@ -121,9 +122,10 @@ const Statistics: React.FC = () => {
             <Text style={[style.tableText, { fontSize: 11 }]}>-</Text>
           </View>
         </View>}
-        <FlatList
+        <FlashList
           data={cashFlow[category]}
-          keyExtractor={(item) => item.category}
+          estimatedItemSize={40}
+          keyExtractor={(item:{category: string, median: any, average: number}) => item.category}
           renderItem={({ item, index }) => {
             const currItem = items.find((i) => item.category === i.name);
             if (!currItem) return <></>;

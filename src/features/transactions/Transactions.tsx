@@ -1,5 +1,5 @@
-import React, { useMemo, useState} from "react";
-import {Dimensions, FlatList, LayoutRectangle, Text, View} from "react-native";
+import React, {useCallback, useMemo, useState} from "react";
+import {Dimensions,Text, View} from "react-native";
 import Item from "features/transactions/item/Item";
 import {
   Categories,
@@ -21,6 +21,7 @@ import {FormattedMessage, useIntl} from "react-intl";
 import {capitalize, getBalance, getDynamics} from "src/utils";
 import {useStyles, useTheme} from "src/hooks";
 import {transactionStyles} from "features/transactions/style";
+import {FlashList} from "@shopify/flash-list";
 
 const categories = [
   {
@@ -57,7 +58,6 @@ const Transactions: React.FC = () => {
   const [itemEditing, setItemEditing] = useState<TItem | undefined>();
   const [itemDeleting, setItemDeleting] = useState<TItem | undefined>();
   const [deleteAllTransactions, setDeleteAllTransactions] = useState(false);
-  const [expensesLayout, setExpensesLayout] = useState<LayoutRectangle>(undefined)
 
   const boundActions = useBoundActions(transactionsActions);
   const intl = useIntl();
@@ -131,6 +131,8 @@ const Transactions: React.FC = () => {
       72
   );
 
+  const keyExtractor = useCallback((item) => (item ? item.id.toString() : "-1"), [])
+
   return (
     <View style={[style.wrapper]}>
       {categories.map((category) => {
@@ -147,29 +149,20 @@ const Transactions: React.FC = () => {
             style={[
               theme.styles.container,
               style.container,
-              { maxHeight: isExpenses ? Dimensions.get('screen').height - (expensesLayout?.y || 0) - 225: '100%' },
+              {flex: isExpenses ? 1 : undefined}
             ]}
-            onLayout={(e) => {
-              if(category.name !== Categories.expense) return
-              if(expensesLayout !== undefined) return;
-              setExpensesLayout(e.nativeEvent.layout);
-            }}
           >
             <View>
               <Text style={{ ...theme.styles.title, marginTop: -10 }}>
                 <FormattedMessage id={category.label} />
               </Text>
             </View>
-              <FlatList
+              <FlashList
                 horizontal={!isExpenses}
+                estimatedItemSize={75}
                 numColumns={isExpenses ? numColumns : undefined}
-                contentContainerStyle={{
-                  ...style.list,
-                  flexDirection: isExpenses ? "column" : "row",
-                }}
-                style={{marginBottom: 20}}
                 data={visibleItems}
-                keyExtractor={(item) => (item ? item.id.toString() : "-1")}
+                keyExtractor={keyExtractor}
                 renderItem={({ item }) => {
                   const isCurrentItemTransferring =
                     transferredItem?.id === item?.id;
@@ -237,6 +230,7 @@ const Transactions: React.FC = () => {
           </View>
         );
       })}
+      <View style={{marginBottom: 90}}/>
       <ItemModal
         label={capitalize(
           `${intl.formatMessage({ id: "create" })} ${
