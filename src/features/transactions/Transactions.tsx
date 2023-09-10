@@ -109,19 +109,20 @@ const Transactions: React.FC = () => {
   };
 
   const handleAddTransaction = (data: ITransactionFieldValues) => {
+    if(!transferredItem || !acceptedItem) return
     const {isRepeat, ...newData} = data
     const transactionBase: TTransactionBase = {
       ...newData,
       date: newData.date.toString(),
-      fromItemId: transferredItem?.id,
-      toItemId: acceptedItem?.id,
+      fromItemId: transferredItem.id,
+      toItemId: acceptedItem.id,
     };
     boundActions.createTransaction({transactionBase, isRepeat});
     handleCloseTransactionModal();
   };
 
   const getCashFlow = (item: TItem): number | undefined => {
-    if (item.type !== Categories.wallet) return;
+    if (item?.type !== Categories.wallet) return;
     return wallets.find((i) => i.itemId === item.id)?.balance || 0;
   };
 
@@ -139,7 +140,7 @@ const Transactions: React.FC = () => {
         const isExpenses = category.name === Categories.expense;
         const visibleItems = [
           ...items.filter(
-            (item) => item.type === category.name && item.visible
+            (item) => item?.type === category.name && item.visible
           ),
           undefined,
         ];
@@ -175,11 +176,11 @@ const Transactions: React.FC = () => {
                       {item ? (
                         <Item
                           key={item.id}
-                          type={item.type}
+                          type={item?.type}
                           name={item.name}
                           icon={item.icon}
                           cashFlow={getCashFlow(item)}
-                          fullWidth={item.type !== Categories.expense}
+                          fullWidth={item?.type !== Categories.expense}
                           isActive={isCurrentItemTransferring}
                           disabled={
                             transferredItem &&
@@ -189,7 +190,7 @@ const Transactions: React.FC = () => {
                           onPress={() => {
                             if (!isCurrentItemTransferring && canAcceptTransfer)
                               handleTransfer(item);
-                            else if (item.type !== Categories.expense)
+                            else if (item?.type !== Categories.expense)
                               handleSelectItem(item);
                           }}
                           onLongPress={() => setItemEditing(item)}

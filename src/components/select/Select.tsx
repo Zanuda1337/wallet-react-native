@@ -5,7 +5,7 @@ import {
   LayoutRectangle,
   Animated,
   StyleSheet,
-  Easing, Dimensions, StyleProp, ViewStyle, TextStyle,
+  Easing, Dimensions, StyleProp, ViewStyle, TextStyle, StatusBar,
 } from "react-native";
 import TextField from "src/components/textField/TextField";
 import { selectStyles } from "./style";
@@ -69,8 +69,8 @@ const Select: React.FC<TSelectProps> = ({
         )}
         onPress={handleOpen}
       />
-      <Modal visible={show} transparent={true}>
-        <View style={[absoluteFill]} onTouchStart={handleClose}>
+      <Modal visible={show} transparent={true} statusBarTranslucent onRequestClose={handleClose}>
+        <View style={[absoluteFill, {paddingTop: StatusBar.currentHeight}]} onTouchStart={handleClose}>
           <Animated.View
             onTouchStart={(e) => e.stopPropagation()}
             style={{

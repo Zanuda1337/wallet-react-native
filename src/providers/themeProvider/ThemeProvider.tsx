@@ -32,7 +32,8 @@ const darkThemeColors = {
   independentForeground: '#fff',
   selectBackground: '#313131',
   success: '#26DD38',
-  primaryLight: '#a9c1fa'
+  primaryLight: '#a9c1fa',
+  foregroundDark: "#444d5a",
 };
 const lightThemeColors = {
   primary: "#2D79FF",
@@ -56,7 +57,8 @@ const lightThemeColors = {
   independentForeground: '#fff',
   selectBackground: '#232323',
   success: '#26DD38',
-  primaryLight: '#8aa8ec'
+  primaryLight: '#8aa8ec',
+  foregroundDark: "#444d5a",
 };
 
 export const createTheme = (

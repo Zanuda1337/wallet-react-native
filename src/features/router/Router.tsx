@@ -1,9 +1,15 @@
 import React from "react";
 import { NativeRouter, Route, Routes } from "react-router-native";
-import { layouts } from "./Router.consts";
 import { getRoutesList } from "features/router/Router.utils";
+import PrimaryLayout from "src/layouts/primaryLayout/PrimaryLayout";
+import EmptyLayout from "src/layouts/emptyLayout/EmptyLayout";
 
 type TRouterProps = {};
+
+const layouts = [
+  { id: 1, component: PrimaryLayout },
+  {id: 2, component: EmptyLayout}
+]
 
 const Router: React.FC<TRouterProps> = ({}) => {
   return (

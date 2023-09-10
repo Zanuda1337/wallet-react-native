@@ -1,0 +1,1 @@
+export type TDatesRange = [Date, Date] | [Date] | []

@@ -9,12 +9,12 @@ import { TTransaction } from "features/transactions/Transactions.types";
 import RenderDatePicker from "src/components/form/renderDatePicker/RenderDatePicker";
 import { pureDate } from "src/utils";
 import RenderSwitch from "src/components/form/renderSwitch/RenderSwitch";
-import {TField} from "src/components/form/Form.types";
+import { TField } from "src/components/form/Form.types";
 
 export interface ITransactionFieldValues
   extends Pick<TTransaction, "amount" | "note"> {
   date: Date;
-  isRepeat?: boolean
+  isRepeat?: boolean;
 }
 
 type TModalProps = {
@@ -38,14 +38,14 @@ const TransactionModal: React.FC<TModalProps> = ({
   onBackdropPress,
   onHide,
   onSubmit,
-  edit
+  edit,
 }) => {
   const style = useStyles(transactionModalStyles);
   const theme = useTheme();
   const top = useTransition(100, 0, visible, { duration: 400 });
   const [show, setShow] = useState(visible);
   const [amount, setAmount] = useState(0);
-  const [visibleData, setVisibleData] = useState({from, to, icon})
+  const [visibleData, setVisibleData] = useState({ from, to, icon });
   const formatMoney = useFormatMoney();
 
   useEffect(() => {
@@ -62,9 +62,9 @@ const TransactionModal: React.FC<TModalProps> = ({
   }, [visible, initialValues]);
 
   useEffect(() => {
-    if(!from || !to || !icon) return
-    setVisibleData({from, to, icon})
-  }, [from, to, icon])
+    if (!from || !to || !icon) return;
+    setVisibleData({ from, to, icon });
+  }, [from, to, icon]);
 
   const fields: TField[] = [
     {
@@ -73,13 +73,10 @@ const TransactionModal: React.FC<TModalProps> = ({
       component: RenderCalculator,
       rules: {
         validate: {
-          moreThanMinimum: (value) =>
-            value >= 0.01 || "MIN_AMOUNT_VALIDATION",
+          moreThanMinimum: (value) => value >= 0.01 || "MIN_AMOUNT_VALIDATION",
           decimalPoint: (value) => {
             if (Number.isInteger(value)) return true;
-            const decimalPointPart = value
-              .toString()
-              .split(".")[1];
+            const decimalPointPart = value.toString().split(".")[1];
             if (decimalPointPart.length <= 2) return true;
             if (+value.toFixed(2) === value) return true;
             return "AMOUNT_VALIDATION";
@@ -99,22 +96,28 @@ const TransactionModal: React.FC<TModalProps> = ({
       initialValue: initialValues?.note || "",
       props: { multiline: true },
     },
-  ]
+  ];
 
   if (!edit) {
-    const note = {...fields[2]}
+    const note = { ...fields[2] };
     fields[2] = {
       name: "isRepeat",
       label: "repeat",
       initialValue: false,
       component: RenderSwitch,
-    }
+    };
     fields[3] = note;
   }
 
   return (
     <>
-      <Modal transparent visible={show} animationType="fade" statusBarTranslucent presentationStyle='overFullScreen'>
+      <Modal
+        transparent
+        visible={show}
+        animationType="fade"
+        statusBarTranslucent
+        presentationStyle="overFullScreen"
+      >
         {show && (
           <>
             <View
@@ -123,6 +126,7 @@ const TransactionModal: React.FC<TModalProps> = ({
             />
             <View style={style.backdrop}>
               <Animated.View
+                pointerEvents={visible ? "auto" : "none"}
                 style={[
                   theme.styles.container,
                   style.container,
@@ -136,7 +140,13 @@ const TransactionModal: React.FC<TModalProps> = ({
               >
                 <View style={style.header}>
                   <View style={[theme.styles.circle, style.circle]}>
-                    {visibleData.icon && <SvgSelector id={visibleData.icon} fill='black' size={25} />}
+                    {visibleData.icon && (
+                      <SvgSelector
+                        id={visibleData.icon}
+                        fill="black"
+                        size={25}
+                      />
+                    )}
                   </View>
                   <View style={style.transaction}>
                     <View style={style.arrowContainer}>
