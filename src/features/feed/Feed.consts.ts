@@ -1,0 +1,1 @@
+export const DENOMINATIONS = {	'1':'NO_INCOMES',	'0':'NO_TRANSFERS',	'-1': 'NO_EXPENSES',}

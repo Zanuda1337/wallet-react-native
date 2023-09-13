@@ -1,9 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Animated } from "react-native";
 import {
-  Modal,
   View,
-  Text,
   LayoutAnimation,
   FlatList,
   LayoutAnimationConfig,
@@ -58,8 +55,12 @@ const NoticeProvider: React.FC<TNoticeProviderProps> = ({ children }) => {
     <NoticeContext.Provider
       value={{
         notices,
-        changeNotices: (notices) => {
-          setNotices(notices);
+        changeNotices: (newNotices) => {
+          const notice = notices.find(n =>
+            n.message === newNotices.at(-1).message
+          )
+          if(notice) return
+          setNotices(newNotices);
         },
       }}
     >

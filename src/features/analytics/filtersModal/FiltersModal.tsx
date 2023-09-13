@@ -64,7 +64,7 @@ const FiltersModal: React.FC<TFilterListProps> = ({
     <>
       <Dialogue
         visible={visible}
-        styles={{ root: { padding: 0, maxHeight: Dimensions.get('screen').height * 0.66, paddingBottom: 50 } }}
+        styles={{ root: { padding: 0, maxHeight: Dimensions.get('screen').height * 0.66, overflow: "hidden", flexGrow:1, paddingBottom: 80 } }}
         header={
           <Header
             styles={{
@@ -94,14 +94,16 @@ const FiltersModal: React.FC<TFilterListProps> = ({
         submitButtonProps={{ visible: false }}
         onBackdropPress={onClose}
       >
-        <FlatList
+        <View style={{flexGrow: 1, overflow: "hidden"}}><FlatList
           data={Object.entries(filtersOptions)}
           keyExtractor={([label]) => label}
-          renderItem={({ item: [label, options] }) =>
+          renderItem={({item: [label, options]}) =>
             (
               <View>
                 <View style={style.filterTitleContainer}>
-                  <Checkbox checked={getChecked(label)} indeterminate={getIndeterminate(label)} onChange={() => handleCheckbox(label)}/>
+                  <Checkbox checked={getChecked(label)}
+                            indeterminate={getIndeterminate(label)}
+                            onChange={() => handleCheckbox(label)}/>
                   <Text style={style.filterTitle}><FormattedMessage id={label}/></Text>
                 </View>
                 <View style={style.buttons}>
@@ -146,7 +148,7 @@ const FiltersModal: React.FC<TFilterListProps> = ({
               </View>
             )
           }
-        />
+        /></View>
       </Dialogue>
     </>
   );

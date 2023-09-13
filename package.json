@@ -33,6 +33,7 @@
     "react-hook-form": "^7.45.2",
     "react-intl": "^6.4.4",
     "react-native": "0.71.8",
+    "react-native-modal": "^13.0.1",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.10",
     "react-redux": "^8.1.2",

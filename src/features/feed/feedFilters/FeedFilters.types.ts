@@ -1,0 +1,1 @@
+export type TFeedFilters = { disabledDenominations: Array<-1 | 0 | 1>, range: [number, number] }

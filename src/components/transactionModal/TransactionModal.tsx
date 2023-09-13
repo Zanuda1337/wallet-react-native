@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Modal, View, Text, Animated } from "react-native";
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  Dimensions,
+} from "react-native";
 import { transactionModalStyles } from "./style";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
-import { useFormatMoney, useStyles, useTheme, useTransition } from "src/hooks";
+import { useFormatMoney, useStyles, useTheme } from "src/hooks";
 import Form from "src/components/form/Form";
 import RenderCalculator from "src/components/form/renderCalculator/RenderCalculator";
 import { TTransaction } from "features/transactions/Transactions.types";
@@ -10,12 +15,17 @@ import RenderDatePicker from "src/components/form/renderDatePicker/RenderDatePic
 import { pureDate } from "src/utils";
 import RenderSwitch from "src/components/form/renderSwitch/RenderSwitch";
 import { TField } from "src/components/form/Form.types";
+import Modal from "react-native-modal";
 
 export interface ITransactionFieldValues
   extends Pick<TTransaction, "amount" | "note"> {
   date: Date;
   isRepeat?: boolean;
 }
+
+const navBarHeight =
+  Dimensions.get("screen").height -
+  (Dimensions.get("window").height);
 
 type TModalProps = {
   visible: boolean;
@@ -42,7 +52,6 @@ const TransactionModal: React.FC<TModalProps> = ({
 }) => {
   const style = useStyles(transactionModalStyles);
   const theme = useTheme();
-  const top = useTransition(100, 0, visible, { duration: 400 });
   const [show, setShow] = useState(visible);
   const [amount, setAmount] = useState(0);
   const [visibleData, setVisibleData] = useState({ from, to, icon });
@@ -52,13 +61,11 @@ const TransactionModal: React.FC<TModalProps> = ({
     if (visible) {
       setAmount(initialValues?.amount || 0);
       setShow(true);
-      return () => clearTimeout(id);
+      return;
     }
-    const id = setTimeout(() => {
-      onHide();
-      setShow(false);
-    }, 370);
-    return () => clearTimeout(id);
+
+    onHide();
+    setShow(false);
   }, [visible, initialValues]);
 
   useEffect(() => {
@@ -93,6 +100,7 @@ const TransactionModal: React.FC<TModalProps> = ({
 
     {
       name: "note",
+      rules: { maxLength: { value: 270, message: "LIMIT_270_SYMBOLS" } },
       initialValue: initialValues?.note || "",
       props: { multiline: true },
     },
@@ -112,63 +120,56 @@ const TransactionModal: React.FC<TModalProps> = ({
   return (
     <>
       <Modal
-        transparent
-        visible={show}
-        animationType="fade"
+        onBackButtonPress={onBackdropPress}
+        onBackdropPress={onBackdropPress}
+        isVisible={show}
         statusBarTranslucent
-        presentationStyle="overFullScreen"
+        backdropOpacity={0.3}
+        hideModalContentWhileAnimating
+        coverScreen
+        useNativeDriverForBackdrop
+        style={{ margin: 0 }}
+        deviceHeight={Dimensions.get("screen").height}
       >
-        {show && (
-          <>
+        <View style={style.backdrop} pointerEvents={"box-none"}>
+          <KeyboardAvoidingView
+            keyboardVerticalOffset={-navBarHeight}
+            behavior="padding"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
             <View
-              style={{ flexGrow: 1, backgroundColor: "rgba(0,0,0,0.5)" }}
-              onTouchStart={onBackdropPress}
-            />
-            <View style={style.backdrop}>
-              <Animated.View
-                pointerEvents={visible ? "auto" : "none"}
-                style={[
-                  theme.styles.container,
-                  style.container,
-                  {
-                    top: top.interpolate({
-                      inputRange: [0, 100],
-                      outputRange: ["0%", "150%"],
-                    }),
-                  },
-                ]}
-              >
-                <View style={style.header}>
-                  <View style={[theme.styles.circle, style.circle]}>
-                    {visibleData.icon && (
-                      <SvgSelector
-                        id={visibleData.icon}
-                        fill="black"
-                        size={25}
-                      />
-                    )}
-                  </View>
-                  <View style={style.transaction}>
-                    <View style={style.arrowContainer}>
-                      <View style={style.arrowBody} />
-                      <View style={[theme.styles.circle, style.arrowCap]} />
-                    </View>
-                    <View style={style.textContainer}>
-                      <Text style={style.text}>{visibleData.from}</Text>
-                      <Text style={style.subtext}>{visibleData.to}</Text>
-                    </View>
-                  </View>
-                  <Text style={style.amount}>{formatMoney(amount)}</Text>
+              pointerEvents={visible ? "auto" : "none"}
+              style={[theme.styles.container, style.container]}
+            >
+              <View style={style.header}>
+                <View style={[theme.styles.circle, style.circle]}>
+                  {visibleData.icon && (
+                    <SvgSelector id={visibleData.icon} fill="black" size={25} />
+                  )}
                 </View>
-                <Form
-                  fields={fields}
-                  onChange={(data) => setAmount(data.amount)}
-                  onSubmit={onSubmit}
-                />
-              </Animated.View>
+                <View style={[style.transaction]}>
+                  <View style={style.arrowContainer}>
+                    <View style={style.arrowBody} />
+                    <View style={[theme.styles.circle, style.arrowCap]} />
+                  </View>
+                  <View style={style.textContainer}>
+                    <Text style={style.text}>{visibleData.from}</Text>
+                    <Text style={style.subtext}>{visibleData.to}</Text>
+                  </View>
+                </View>
+                <Text style={style.amount}>{formatMoney(amount)}</Text>
+              </View>
+              <Form
+                fields={fields}
+                onChange={(data) => setAmount(data.amount)}
+                onSubmit={onSubmit}
+              />
             </View>
-          </>
-        )}
+          </KeyboardAvoidingView>
+        </View>
       </Modal>
     </>
   );
