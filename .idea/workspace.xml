@@ -17,36 +17,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50815815-f34a-414e-9e6a-6e210825bfe8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/slider/Slider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/slider/style.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/feed/Feed.consts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/feed/chip/Chip.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/feed/feedFilters/FeedFilters.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/feed/feedFilters/FeedFilters.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/feed/feedFilters/numericField/NumericField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/speedDial/SpeedDial.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/speedDial/item/Item.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/speedDial/style.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/calculator/stytle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/calculator/stytle.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/Charts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/Charts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/charts/Charts.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/charts/Charts.utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/Checkbox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkbox/Checkbox.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/datesRangePicker/DatesRangePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/datesRangePicker/DatesRangePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialogue/Dialogue.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialogue/Dialogue.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialogue/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialogue/style.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form/renderCalculator/RenderCalculator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/renderCalculator/RenderCalculator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/circularProgress/CircularProgress.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/circularProgress/CircularProgress.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/itemModal/ItemModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/itemModal/ItemModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/slider/Slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/slider/Slider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/textField/TextField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textField/TextField.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactionModal/TransactionModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactionModal/TransactionModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/transactionModal/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/transactionModal/style.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/analytics/filtersModal/FiltersModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/analytics/filtersModal/FiltersModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/feed/Feed.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/feed/Feed.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/feed/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/feed/style.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/feed/feedFilters/FeedFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/feed/feedFilters/FeedFilters.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/transactions/Transactions.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/transactions/item/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/item/Item.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/providers/noticeProvider/NoticeProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/noticeProvider/NoticeProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/languages/be.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/be.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/languages/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/en.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/languages/ru.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/ru.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/languages/uk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/uk.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +67,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../todo_frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Volvo" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -120,6 +110,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.start" />
@@ -176,6 +167,20 @@
       <workItem from="1694453143989" duration="6169000" />
       <workItem from="1694525043628" duration="32217000" />
       <workItem from="1694573860830" duration="20012000" />
+      <workItem from="1694601223635" duration="1029000" />
+      <workItem from="1694949326634" duration="596000" />
+      <workItem from="1695018977238" duration="537000" />
+      <workItem from="1696628744852" duration="24000" />
+      <workItem from="1697535570959" duration="1777000" />
+      <workItem from="1697618405149" duration="39000" />
+      <workItem from="1697710652450" duration="598000" />
+      <workItem from="1697885900611" duration="36000" />
+      <workItem from="1697977458503" duration="2210000" />
+      <workItem from="1698063951029" duration="117000" />
+      <workItem from="1698067376694" duration="1058000" />
+      <workItem from="1698154851985" duration="14512000" />
+      <workItem from="1698232621539" duration="398000" />
+      <workItem from="1698330415927" duration="9263000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1689817626283</created>
@@ -217,7 +222,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="made filter in feed" />
-    <option name="LAST_COMMIT_MESSAGE" value="made filter in feed" />
+    <MESSAGE value="made filters in feed &amp; context menu in transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="made filters in feed &amp; context menu in transactions" />
   </component>
   <component name="WindowStateProjectService">
     <state x="681" y="325" key="#ESLint" timestamp="1691814161995">
@@ -240,42 +246,42 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691845542848" />
-    <state x="959" y="365" key="FileChooserDialogImpl" timestamp="1694004760336">
+    <state x="959" y="365" key="FileChooserDialogImpl" timestamp="1698064195174">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="959" y="365" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694004760336" />
-    <state width="1899" height="340" key="GridCell.Tab.0.bottom" timestamp="1694593272694">
+    <state x="959" y="365" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698064195174" />
+    <state width="1899" height="243" key="GridCell.Tab.0.bottom" timestamp="1698338988499">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="340" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694593272694" />
-    <state width="1899" height="340" key="GridCell.Tab.0.center" timestamp="1694593272694">
+    <state width="1899" height="243" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
+    <state width="1899" height="243" key="GridCell.Tab.0.center" timestamp="1698338988499">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="340" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694593272694" />
-    <state width="1899" height="340" key="GridCell.Tab.0.left" timestamp="1694593272694">
+    <state width="1899" height="243" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
+    <state width="1899" height="243" key="GridCell.Tab.0.left" timestamp="1698338988499">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="340" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694593272694" />
-    <state width="1899" height="340" key="GridCell.Tab.0.right" timestamp="1694593272694">
+    <state width="1899" height="243" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
+    <state width="1899" height="243" key="GridCell.Tab.0.right" timestamp="1698338988499">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="340" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694593272694" />
+    <state width="1899" height="243" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
     <state x="224" y="40" width="1383" height="1040" key="SettingsEditor" timestamp="1691805804828">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="224" y="40" width="1383" height="1040" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691805804828" />
-    <state x="552" y="293" key="Vcs.Push.Dialog.v2" timestamp="1694307794405">
+    <state x="552" y="293" key="Vcs.Push.Dialog.v2" timestamp="1694595033423">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="552" y="293" key="Vcs.Push.Dialog.v2/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694307794405" />
+    <state x="552" y="293" key="Vcs.Push.Dialog.v2/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694595033423" />
     <state x="785" y="475" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1694576342598">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="785" y="475" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694576342598" />
-    <state x="670" y="302" width="585" height="516" key="find.popup" timestamp="1694564088917">
+    <state x="670" y="302" width="585" height="516" key="find.popup" timestamp="1697978374934">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="670" y="302" width="585" height="516" key="find.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694564088917" />
+    <state x="670" y="302" width="585" height="516" key="find.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1697978374934" />
     <state x="616" y="260" key="run.anything.popup" timestamp="1694589309309">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>

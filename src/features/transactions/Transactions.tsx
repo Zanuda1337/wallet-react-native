@@ -1,5 +1,5 @@
-import React, {useCallback, useMemo, useState} from "react";
-import {Dimensions,Text, View} from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Dimensions, Text, View } from "react-native";
 import Item from "features/transactions/item/Item";
 import {
   Categories,
@@ -8,20 +8,24 @@ import {
   TTransaction,
   TTransactionBase,
 } from "features/transactions/Transactions.types";
-import {canAccept} from "features/transactions/Tansactions.utils";
-import TransactionModal, {ITransactionFieldValues,} from "src/components/transactionModal/TransactionModal";
+import { canAccept } from "features/transactions/Tansactions.utils";
+import TransactionModal, {
+  ITransactionFieldValues,
+} from "src/components/transactionModal/TransactionModal";
 import IconButton from "src/components/iconButton/IconButton";
 import SvgSelector from "src/components/svgSelector/SvgSelector";
 import ItemModal from "src/components/itemModal/ItemModal";
-import {useAppSelector, useBoundActions} from "src/store/hooks";
-import {transactionsActions} from "./Transactions.slice";
+import { useAppSelector, useBoundActions } from "src/store/hooks";
+import { transactionsActions } from "./Transactions.slice";
 import Dialogue from "src/components/dialogue/Dialogue";
 import Switch from "src/components/switch/Switch";
-import {FormattedMessage, useIntl} from "react-intl";
-import {capitalize, getBalance, getDynamics} from "src/utils";
-import {useStyles, useTheme} from "src/hooks";
-import {transactionStyles} from "features/transactions/style";
-import {FlashList} from "@shopify/flash-list";
+import { FormattedMessage, useIntl } from "react-intl";
+import { capitalize, getBalance, getDynamics } from "src/utils";
+import { useStyles, useTheme } from "src/hooks";
+import { transactionStyles } from "features/transactions/style";
+import { FlashList } from "@shopify/flash-list";
+import SpeedDial from "src/components/speedDial/SpeedDial";
+import { useNavigate } from "react-router-native";
 
 const categories = [
   {
@@ -44,6 +48,7 @@ const categories = [
 const Transactions: React.FC = () => {
   const style = useStyles(transactionStyles);
   const theme = useTheme();
+  const navigate = useNavigate();
   const items: TItem[] = useAppSelector(
     (state) => state.transactionsReducer.items
   );
@@ -57,7 +62,9 @@ const Transactions: React.FC = () => {
   >();
   const [itemEditing, setItemEditing] = useState<TItem | undefined>();
   const [itemDeleting, setItemDeleting] = useState<TItem | undefined>();
+  const [editing, setEditing] = useState(false);
   const [deleteAllTransactions, setDeleteAllTransactions] = useState(false);
+  const [speedDialOpen, setSpeedDialOpen] = useState(false);
 
   const boundActions = useBoundActions(transactionsActions);
   const intl = useIntl();
@@ -84,13 +91,24 @@ const Transactions: React.FC = () => {
     item: Pick<TItem, "name" | "icon" | "initialBalance">
   ) => {
     boundActions.addItem({ ...item, type: itemCreating });
-    setItemCreating(undefined);
+    handleCloseCreate();
   };
   const handleEditItem = (
     item: Pick<TItem, "name" | "icon" | "initialBalance">
   ) => {
     boundActions.editItem({ ...itemEditing, ...item });
+    handleCloseEdit();
+  };
+  const handleCloseEdit = () => {
+    setEditing(false);
     setItemEditing(undefined);
+    setAcceptedItem(undefined);
+    setTransferredItem(undefined);
+  };
+  const handleCloseCreate = () => {
+    setItemCreating(undefined);
+    setAcceptedItem(undefined);
+    setTransferredItem(undefined);
   };
   const toggleDeleteAllTransactions = () =>
     setDeleteAllTransactions(!deleteAllTransactions);
@@ -109,15 +127,15 @@ const Transactions: React.FC = () => {
   };
 
   const handleAddTransaction = (data: ITransactionFieldValues) => {
-    if(!transferredItem || !acceptedItem) return
-    const {isRepeat, ...newData} = data
+    if (!transferredItem || !acceptedItem) return;
+    const { isRepeat, ...newData } = data;
     const transactionBase: TTransactionBase = {
       ...newData,
       date: newData.date.toString(),
       fromItemId: transferredItem.id,
       toItemId: acceptedItem.id,
     };
-    boundActions.createTransaction({transactionBase, isRepeat});
+    boundActions.createTransaction({ transactionBase, isRepeat });
     handleCloseTransactionModal();
   };
 
@@ -132,7 +150,16 @@ const Transactions: React.FC = () => {
       72
   );
 
-  const keyExtractor = useCallback((item) => (item ? item.id.toString() : "-1"), [])
+  const keyExtractor = useCallback(
+    (item) => (item ? item.id.toString() : "-1"),
+    []
+  );
+
+  useEffect(() => {
+    if (!speedDialOpen) return;
+    setAcceptedItem(undefined);
+    setTransferredItem(undefined);
+  }, [speedDialOpen, acceptedItem, transferredItem]);
 
   return (
     <View style={[style.wrapper]}>
@@ -150,7 +177,7 @@ const Transactions: React.FC = () => {
             style={[
               theme.styles.container,
               style.container,
-              {flex: isExpenses ? 1 : undefined}
+              { flex: isExpenses ? 1 : undefined },
             ]}
           >
             <View>
@@ -158,80 +185,83 @@ const Transactions: React.FC = () => {
                 <FormattedMessage id={category.label} />
               </Text>
             </View>
-              <FlashList
-                horizontal={!isExpenses}
-                estimatedItemSize={75}
-                numColumns={isExpenses ? numColumns : undefined}
-                data={visibleItems}
-                keyExtractor={keyExtractor}
-                renderItem={({ item }) => {
-                  const isCurrentItemTransferring =
-                    transferredItem?.id === item?.id;
-                  const canAcceptTransfer = canAccept(
-                    transferredItem?.type,
-                    category.canAccept
-                  );
-                  return (
-                    <>
-                      {item ? (
-                        <Item
-                          key={item.id}
-                          type={item?.type}
-                          name={item.name}
-                          icon={item.icon}
-                          cashFlow={getCashFlow(item)}
-                          fullWidth={item?.type !== Categories.expense}
-                          isActive={isCurrentItemTransferring}
-                          disabled={
-                            transferredItem &&
-                            !isCurrentItemTransferring &&
-                            !canAcceptTransfer
+            <FlashList
+              horizontal={!isExpenses}
+              estimatedItemSize={75}
+              numColumns={isExpenses ? numColumns : undefined}
+              data={visibleItems}
+              keyExtractor={keyExtractor}
+              renderItem={({ item }) => {
+                const isCurrentItemTransferring =
+                  transferredItem?.id === item?.id;
+                const canAcceptTransfer = canAccept(
+                  transferredItem?.type,
+                  category.canAccept
+                );
+                return (
+                  <>
+                    {item ? (
+                      <Item
+                        key={item.id}
+                        type={item?.type}
+                        name={item.name}
+                        icon={item.icon}
+                        cashFlow={getCashFlow(item)}
+                        fullWidth={item?.type !== Categories.expense}
+                        isActive={isCurrentItemTransferring}
+                        disabled={
+                          transferredItem &&
+                          !isCurrentItemTransferring &&
+                          !canAcceptTransfer
+                        }
+                        onPress={() => {
+                          if (!isCurrentItemTransferring && canAcceptTransfer)
+                            handleTransfer(item);
+                          else if (item?.type !== Categories.expense)
+                            handleSelectItem(item);
+                        }}
+                        onLongPress={() => {
+                          setSpeedDialOpen(true);
+                          setItemEditing(item);
+                        }}
+                      />
+                    ) : (
+                      <View
+                        style={{
+                          width: 72,
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <IconButton
+                          styles={{
+                            root: {
+                              borderStyle: "dashed",
+                              borderColor: theme.colors.subtext,
+                              borderWidth: 2,
+                            },
+                          }}
+                          variant="ghost"
+                          size="medium"
+                          icon={
+                            <SvgSelector
+                              id="plus"
+                              stroke={theme.colors.subtext}
+                              size={20}
+                            />
                           }
-                          onPress={() => {
-                            if (!isCurrentItemTransferring && canAcceptTransfer)
-                              handleTransfer(item);
-                            else if (item?.type !== Categories.expense)
-                              handleSelectItem(item);
-                          }}
-                          onLongPress={() => setItemEditing(item)}
+                          onPress={() => setItemCreating(category.name)}
                         />
-                      ) : (
-                        <View
-                          style={{
-                            width: 72,
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <IconButton
-                            styles={{
-                              root: {
-                                borderStyle: "dashed",
-                                borderColor: theme.colors.subtext,
-                                borderWidth: 2,
-                              },
-                            }}
-                            variant="ghost"
-                            size="medium"
-                            icon={
-                              <SvgSelector
-                                id="plus"
-                                stroke={theme.colors.subtext}
-                                size={20}
-                              />
-                            }
-                            onPress={() => setItemCreating(category.name)}
-                          />
-                        </View>
-                      )}
-                    </>
-                  );
-                }}
-              />
+                      </View>
+                    )}
+                  </>
+                );
+              }}
+            />
           </View>
         );
       })}
-      <View style={{marginBottom: 90}}/>
+      <View style={{ marginBottom: 90 }} />
       <ItemModal
         label={capitalize(
           `${intl.formatMessage({ id: "create" })} ${
@@ -249,7 +279,7 @@ const Transactions: React.FC = () => {
         itemType={itemCreating}
         visible={!!itemCreating}
         onSubmit={handleAddItem}
-        onClose={() => setItemCreating(undefined)}
+        onClose={handleCloseCreate}
       />
       <ItemModal
         id={itemEditing?.id}
@@ -268,10 +298,9 @@ const Transactions: React.FC = () => {
           initialBalance: itemEditing?.initialBalance,
         }}
         itemType={itemEditing?.type}
-        visible={!!itemEditing}
+        visible={editing}
         onSubmit={handleEditItem}
-        onDelete={() => setItemDeleting(itemEditing)}
-        onClose={() => setItemEditing(undefined)}
+        onClose={handleCloseEdit}
       />
       <Dialogue
         visible={!!itemDeleting}
@@ -312,6 +341,21 @@ const Transactions: React.FC = () => {
           </View>
         </>
       </Dialogue>
+      <SpeedDial
+        open={speedDialOpen}
+        onClose={() => setSpeedDialOpen(false)}
+        options={[
+          { iconName: "receipt", onPress: () => navigate(`/feed?categoryId=${itemEditing.id}`) },
+          { iconName: "edit", onPress: () => setEditing(true) },
+          { iconName: "highPriority", onPress: () => boundActions.highPriority(itemEditing.id) },
+          { iconName: "lowPriority", onPress: () => boundActions.lowPriority(itemEditing.id) },
+          {
+            iconName: "delete",
+            onPress: () => setItemDeleting(itemEditing),
+            iconProps: { fill: theme.colors.error },
+          },
+        ]}
+      />
       <TransactionModal
         visible={!!transferredItem && !!acceptedItem}
         onBackdropPress={handleCloseTransactionModal}

@@ -69,12 +69,8 @@ const NoticeProvider: React.FC<TNoticeProviderProps> = ({ children }) => {
         pointerEvents="none"
         style={{
           position: "absolute",
-          // flexDirection: "column-reverse",
           width: "100%",
           height: "100%",
-          // gap: 10,
-          // padding: 18,
-          // paddingBottom: 70,
         }}
       >
         <FlatList
@@ -98,15 +94,6 @@ const NoticeProvider: React.FC<TNoticeProviderProps> = ({ children }) => {
             />
           )}
         />
-        {/*{[...notices].reverse().map((notice) => {*/}
-        {/*  return (*/}
-        {/*    <Notice*/}
-        {/*      key={notice.id}*/}
-        {/*      message={notice.message}*/}
-        {/*      type={notice.type}*/}
-        {/*    />*/}
-        {/*  );*/}
-        {/*})}*/}
       </View>
     </NoticeContext.Provider>
   );
