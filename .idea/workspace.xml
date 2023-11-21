@@ -11,32 +11,17 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:develop" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50815815-f34a-414e-9e6a-6e210825bfe8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/speedDial/SpeedDial.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/speedDial/item/Item.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/speedDial/style.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/circularProgress/CircularProgress.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/circularProgress/CircularProgress.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/itemModal/ItemModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/itemModal/ItemModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/slider/Slider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/slider/Slider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/iconSelector/IconSelector.consts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/iconSelector/IconSelector.consts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/feed/Feed.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/feed/Feed.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/feed/feedFilters/FeedFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/feed/feedFilters/FeedFilters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/transactions/Transactions.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/Transactions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/transactions/item/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/transactions/item/Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/noticeProvider/NoticeProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/noticeProvider/NoticeProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/languages/be.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/be.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/languages/en.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/en.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/languages/ru.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/ru.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/languages/uk.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/languages/uk.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/analytics/filtersModal/FiltersModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/analytics/filtersModal/FiltersModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Volvo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../messenger" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -181,6 +166,7 @@
       <workItem from="1698154851985" duration="14512000" />
       <workItem from="1698232621539" duration="398000" />
       <workItem from="1698330415927" duration="9263000" />
+      <workItem from="1700582575993" duration="5389000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1689817626283</created>
@@ -206,7 +192,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="develop" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -226,50 +212,26 @@
     <option name="LAST_COMMIT_MESSAGE" value="made filters in feed &amp; context menu in transactions" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="681" y="325" key="#ESLint" timestamp="1691814161995">
+    <state x="959" y="365" key="FileChooserDialogImpl" timestamp="1698351620019">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="681" y="325" key="#ESLint/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691814161995" />
-    <state x="586" y="238" key="#Inspections" timestamp="1691165016886">
+    <state x="959" y="365" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698351620019" />
+    <state width="1899" height="243" key="GridCell.Tab.0.bottom" timestamp="1700583444143">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="586" y="238" key="#Inspections/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691165016886" />
-    <state x="552" y="201" key="#Plugins" timestamp="1691801838621">
+    <state width="1899" height="243" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700583444143" />
+    <state width="1899" height="243" key="GridCell.Tab.0.center" timestamp="1700583444143">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="552" y="201" key="#Plugins/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691801838621" />
-    <state x="385" y="137" width="1239" height="429" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1691805803697">
+    <state width="1899" height="243" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700583444143" />
+    <state width="1899" height="243" key="GridCell.Tab.0.left" timestamp="1700583444143">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="385" y="137" width="1239" height="429" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691805803697" />
-    <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1691845542848">
+    <state width="1899" height="243" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700583444143" />
+    <state width="1899" height="243" key="GridCell.Tab.0.right" timestamp="1700583444143">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="775" y="364" key="#com.intellij.fileTypes.FileTypeChooser/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691845542848" />
-    <state x="959" y="365" key="FileChooserDialogImpl" timestamp="1698064195174">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="959" y="365" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698064195174" />
-    <state width="1899" height="243" key="GridCell.Tab.0.bottom" timestamp="1698338988499">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="243" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
-    <state width="1899" height="243" key="GridCell.Tab.0.center" timestamp="1698338988499">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="243" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
-    <state width="1899" height="243" key="GridCell.Tab.0.left" timestamp="1698338988499">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="243" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
-    <state width="1899" height="243" key="GridCell.Tab.0.right" timestamp="1698338988499">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state width="1899" height="243" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698338988499" />
-    <state x="224" y="40" width="1383" height="1040" key="SettingsEditor" timestamp="1691805804828">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="224" y="40" width="1383" height="1040" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691805804828" />
+    <state width="1899" height="243" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700583444143" />
     <state x="552" y="293" key="Vcs.Push.Dialog.v2" timestamp="1694595033423">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -286,9 +248,5 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="616" y="260" key="run.anything.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1694589309309" />
-    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup" timestamp="1691801931709">
-      <screen x="0" y="40" width="1920" height="1040" />
-    </state>
-    <state x="623" y="265" width="672" height="678" key="search.everywhere.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1691801931709" />
   </component>
 </project>
