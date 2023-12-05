@@ -1,16 +1,16 @@
 import React, { createContext } from "react";
 import { useAppSelector } from "src/store/hooks";
-import {Dimensions, StyleSheet, useColorScheme} from "react-native";
+import { Dimensions, StyleSheet, useColorScheme } from "react-native";
+import { defaultColors } from "features/settings/Settings.slice";
 
 type TThemeProviderProps = {
   children: JSX.Element;
 };
 export type Theme = ReturnType<typeof createTheme>;
 
-
 type Colors = typeof darkThemeColors;
 
-const darkThemeColors = {
+export const darkThemeColors = {
   primary: "#3660c1",
   secondary: "#DD82EC",
   background: "#232323",
@@ -27,15 +27,15 @@ const darkThemeColors = {
   error: "#ff7262",
   warning: "#efb127",
   commonShadow: "#000000",
-  popUp: '#313131',
-  checkboxChecked: '#fff',
-  independentForeground: '#fff',
-  selectBackground: '#313131',
-  success: '#26DD38',
-  primaryLight: '#a9c1fa',
+  popUp: "#313131",
+  checkboxChecked: "#fff",
+  independentForeground: "#fff",
+  selectBackground: "#313131",
+  success: "#26DD38",
+  primaryLight: "#a9c1fa",
   foregroundDark: "#444d5a",
 };
-const lightThemeColors = {
+export const lightThemeColors = {
   primary: "#2D79FF",
   secondary: "#DD82EC",
   background: "#efefef",
@@ -43,7 +43,7 @@ const lightThemeColors = {
   subtext: "#b1b1b1",
   icons: "#fff",
   pale: "#d7d7d7",
-  paleText: '#7d7d7d',
+  paleText: "#7d7d7d",
   blue: "#1abcfe",
   green: "#5BDF8A",
   red: "#ff7262",
@@ -52,21 +52,27 @@ const lightThemeColors = {
   error: "#ff7262",
   warning: "#efb127",
   commonShadow: "#808080",
-  popUp: '#ffffff',
-  checkboxChecked: '#fff',
-  independentForeground: '#fff',
-  selectBackground: '#232323',
-  success: '#26DD38',
-  primaryLight: '#8aa8ec',
+  popUp: "#ffffff",
+  checkboxChecked: "#fff",
+  independentForeground: "#fff",
+  selectBackground: "#232323",
+  success: "#26DD38",
+  primaryLight: "#8aa8ec",
   foregroundDark: "#444d5a",
 };
 
 export const createTheme = (
   lightThemeColors: Colors,
   darkThemeColors: Colors,
-  mode: "light" | "dark"
+  userThemeColors: Colors,
+  mode: "light" | "dark" | "user"
 ) => {
-  const colors = mode === "light" ? lightThemeColors : darkThemeColors;
+  const colors =
+    mode !== "user"
+      ? mode === "light"
+        ? lightThemeColors
+        : darkThemeColors
+      : userThemeColors;
   return {
     mode,
     colors,
@@ -157,17 +163,24 @@ export const createTheme = (
 };
 
 export const ThemeContext = createContext<Theme>(
-  createTheme(darkThemeColors, lightThemeColors, "light")
+  createTheme(darkThemeColors, lightThemeColors, defaultColors, "light")
 );
 
 const ThemeProvider: React.FC<TThemeProviderProps> = ({ children }) => {
-  const themeType = useAppSelector((state) => state.settingsReducer.theme) || 'light';
-  const systemTheme = useColorScheme() || 'light'
-  const newTheme =
-    themeType === "system" ? systemTheme : themeType;
+  const themeType =
+    useAppSelector((state) => state.settingsReducer.theme) || "light";
+  const userTheme =
+    useAppSelector((state) => state.settingsReducer.userTheme) || defaultColors;
+  const systemTheme = useColorScheme() || "light";
+  const newTheme = themeType === "system" ? systemTheme : themeType;
   return (
     <ThemeContext.Provider
-      value={createTheme(lightThemeColors, darkThemeColors, newTheme)}
+      value={createTheme(
+        lightThemeColors,
+        darkThemeColors,
+        userTheme,
+        newTheme
+      )}
     >
       {children}
     </ThemeContext.Provider>

@@ -55,6 +55,13 @@ const Transactions: React.FC = () => {
   const transactions: TTransaction[] = useAppSelector(
     (state) => state.transactionsReducer.transactions
   );
+  const transactionsLayout = useAppSelector(
+    (state) => state.settingsReducer.layout?.transactions
+  ) || {
+    income: { list: "horizontal" },
+    wallet: { list: "horizontal" },
+    expense: { list: "vertical" },
+  };
   const [transferredItem, setTransferredItem] = useState<TItem>();
   const [acceptedItem, setAcceptedItem] = useState<TItem>();
   const [itemCreating, setItemCreating] = useState<
@@ -164,7 +171,8 @@ const Transactions: React.FC = () => {
   return (
     <View style={[style.wrapper]}>
       {categories.map((category) => {
-        const isExpenses = category.name === Categories.expense;
+        // const isVertical = category.name === Categories.expense;
+        const isVertical = transactionsLayout[category.name].list === 'vertical';
         const visibleItems = [
           ...items.filter(
             (item) => item?.type === category.name && item.visible
@@ -177,7 +185,7 @@ const Transactions: React.FC = () => {
             style={[
               theme.styles.container,
               style.container,
-              { flex: isExpenses ? 1 : undefined },
+              { flex: isVertical ? 1 : undefined },
             ]}
           >
             <View>
@@ -186,9 +194,9 @@ const Transactions: React.FC = () => {
               </Text>
             </View>
             <FlashList
-              horizontal={!isExpenses}
+              horizontal={!isVertical}
               estimatedItemSize={75}
-              numColumns={isExpenses ? numColumns : undefined}
+              numColumns={isVertical ? numColumns : undefined}
               data={visibleItems}
               keyExtractor={keyExtractor}
               renderItem={({ item }) => {
@@ -207,7 +215,7 @@ const Transactions: React.FC = () => {
                         name={item.name}
                         icon={item.icon}
                         cashFlow={getCashFlow(item)}
-                        fullWidth={item?.type !== Categories.expense}
+                        fullWidth={!isVertical}
                         isActive={isCurrentItemTransferring}
                         disabled={
                           transferredItem &&
