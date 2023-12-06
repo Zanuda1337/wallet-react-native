@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Modal,
   View,
   LayoutRectangle,
   Animated,
   StyleSheet,
-  Easing, Dimensions, StyleProp, ViewStyle, TextStyle, StatusBar,
+  Easing,
+  Dimensions,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  StatusBar,
 } from "react-native";
 import TextField from "src/components/textField/TextField";
 import { selectStyles } from "./style";
@@ -14,7 +19,7 @@ import { TOption } from "src/components/select/Select.types";
 import { useStyles, useTransition } from "src/hooks";
 import absoluteFill = StyleSheet.absoluteFill;
 import { useIntl } from "react-intl";
-import {capitalize, clamp} from "src/utils";
+import { capitalize, clamp } from "src/utils";
 import { FlatList } from "react-native";
 
 type TSelectProps = {
@@ -22,7 +27,7 @@ type TSelectProps = {
   options: TOption[];
   value: string;
   onChange: (value: string) => void;
-  styles?: {root?: StyleProp<ViewStyle>, optionText?: StyleProp<TextStyle>}
+  styles?: { root?: StyleProp<ViewStyle>; optionText?: StyleProp<TextStyle> };
   renderValue?: (value: string) => string;
 };
 
@@ -32,11 +37,18 @@ const Select: React.FC<TSelectProps> = ({
   value,
   onChange,
   renderValue,
-  styles
+  styles,
 }) => {
   const style = useStyles(selectStyles);
   const [visible, setVisible] = useState(false);
   const [show, setShow] = useState(visible);
+  const [layout, setLayout] = useState<LayoutRectangle>({
+    y: 0,
+    height: 0,
+    x: 0,
+    width: 0,
+  });
+  const ref = useRef<View>(null);
   const intl = useIntl();
   const transition = useTransition(0, 1, visible, {
     duration: 250,
@@ -57,9 +69,16 @@ const Select: React.FC<TSelectProps> = ({
     if (isCapitalize) return capitalize(string);
     return string;
   };
-  const [layout, setLayout] = useState<LayoutRectangle>();
+
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.measureInWindow((x, y, width, height) => {
+      setLayout({ width, x, height, y });
+    });
+  }, [ref, show]);
+
   return (
-    <View onLayout={(event) => setLayout(event.nativeEvent.layout)} style={styles?.root}>
+    <View style={styles?.root} ref={ref} collapsable={false}>
       <TextField
         label={label}
         disabled={true}
@@ -69,19 +88,32 @@ const Select: React.FC<TSelectProps> = ({
         )}
         onPress={handleOpen}
       />
-      <Modal visible={show} transparent={true} statusBarTranslucent onRequestClose={handleClose}>
-        <View style={[absoluteFill, {paddingTop: StatusBar.currentHeight}]} onTouchStart={handleClose}>
+      <Modal
+        visible={show}
+        transparent={true}
+        statusBarTranslucent
+        onRequestClose={handleClose}
+      >
+        <View
+          style={[absoluteFill, { paddingTop: StatusBar.currentHeight }]}
+          onTouchStart={handleClose}
+        >
           <Animated.View
             onTouchStart={(e) => e.stopPropagation()}
             style={{
               ...style.container,
-              maxHeight: clamp(Dimensions.get('screen').height - (layout?.y + +layout?.height) - 150, 0, 250),
+              maxHeight: clamp(
+                Dimensions.get("screen").height -
+                  (layout.y + +layout.height),
+                0,
+                250
+              ),
               top:
                 transition.interpolate({
                   inputRange: [0, 1],
                   outputRange: [
-                    60 + layout?.y + +layout?.height,
-                    83 + layout?.y + +layout?.height,
+                    layout.y + +layout.height - 17,
+                    layout.y + +layout.height,
                   ],
                 }) || 0,
               transform: [
@@ -103,7 +135,10 @@ const Select: React.FC<TSelectProps> = ({
                   translate={false}
                   text={displayLabel(option.label, false)}
                   variant={value === option.value ? "filled" : "ghost"}
-                  styles={{ root: style.option, text: [style.optionText, styles?.optionText] }}
+                  styles={{
+                    root: style.option,
+                    text: [style.optionText, styles?.optionText],
+                  }}
                   onPress={() => {
                     onChange(option.value);
                     handleClose();

@@ -163,6 +163,16 @@ const Main = () => {
                 <Text
                   style={{ ...theme.styles.dialogueText, marginVertical: 5 }}
                 >
+                  Исправления
+                </Text>
+                {[
+                  "Исправлено позиционирование всплывающих контекстных окон",
+                ].map((text) => (
+                  <ChangeLogItem key={text} text={text} />
+                ))}
+                <Text
+                  style={{ ...theme.styles.dialogueText, marginVertical: 5 }}
+                >
                   Разное
                 </Text>
                 {[
