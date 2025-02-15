@@ -19,9 +19,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50815815-f34a-414e-9e6a-6e210825bfe8" name="Default Changelist" comment="feat: Добавил иконки">
+    <list default="true" id="50815815-f34a-414e-9e6a-6e210825bfe8" name="Default Changelist" comment="Обновил версию">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,18 +37,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Zanuda1337"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Zanuda1337&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Zanuda1337/wallet-react-native.git",
-    "accountId": "62fd62d6-01f0-4203-a312-b4bc0fc3136d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Zanuda1337/wallet-react-native.git&quot;,
+    &quot;accountId&quot;: &quot;62fd62d6-01f0-4203-a312-b4bc0fc3136d&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -59,19 +60,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "H:\\Users\\Zanuda\\Documents\\Projects\\wallet-react-native\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;H:\\Users\\Zanuda\\Documents\\Projects\\wallet-react-native\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Zanuda\Documents\Projects\wallet-react-native\src\providers" />
@@ -182,7 +183,7 @@
       <workItem from="1701942696296" duration="141000" />
       <workItem from="1701944401241" duration="3204000" />
       <workItem from="1739614578109" duration="147000" />
-      <workItem from="1739614735659" duration="330000" />
+      <workItem from="1739614735659" duration="3545000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1689817626283</created>
@@ -220,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739614801086</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Обновил версию">
+      <option name="closed" value="true" />
+      <created>1739615522468</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739615522468</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +266,7 @@
     <MESSAGE value="Feat: Изменение ориентации списков, пользовательские темы, новые иконки&#10;Fix: Скрыл navbar" />
     <MESSAGE value="fix: Исправил позиционирование select'а" />
     <MESSAGE value="feat: Добавил иконки" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Добавил иконки" />
+    <MESSAGE value="Обновил версию" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновил версию" />
   </component>
 </project>
