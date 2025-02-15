@@ -52,7 +52,7 @@ const Main = () => {
     setOpen(false);
   };
   const handleSubmit = () => {
-    void AsyncStorage.setItem('cash_keeper_last_version', '1.0.2');
+    void AsyncStorage.setItem('cash_keeper_last_version', '1.0.3');
     handleClose()
   };
 
@@ -61,7 +61,7 @@ const Main = () => {
       // await SplashScreen.preventAutoHideAsync();
       await SplashScreen.hideAsync();
       const version = await AsyncStorage.getItem('cash_keeper_last_version') || '1.0.0';
-      setOpen(version !== '1.0.2');
+      setOpen(version !== '1.0.3');
     }
     prepare();
     boundActions.repeatTransactions();
@@ -131,7 +131,7 @@ const Main = () => {
                     marginBottom: -28,
                   },
                 }}
-                label={"v1.0.2, 05-12-2023"}
+                label={"v1.0.3, 15-02-2024"}
                 leftButtonProps={{ visible: false }}
                 rightButtonProps={{
                   onPress: handleClose,
